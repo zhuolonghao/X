@@ -90,6 +90,7 @@ def _download_others(ticker):
     object = yf.Ticker(ticker)
     try:
         info = object.info
+        del info['trailingAnnualDividendYield']  # address the data type conversion error
         df = _pd.DataFrame.from_dict([info]).assign(ticker=ticker)
     except Exception as e:
         print(f'\n Error in downloading {ticker}')

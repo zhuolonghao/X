@@ -14,7 +14,7 @@ exec(open('_utility/download_tickers_from_yfinance3.py').read())
 price = download(tickers=tickers, data_type="price", period="5y", interval="1d")
 price.columns = [x.lower() for x in price.columns]
 price.sort_values(by=['ticker', 'date_raw'], inplace=True)
-price['ret'] = price.groupby(['ticker'])['close'].pct_change()
+price['ret'] = price.groupby(['ticker'])['close'].pct_change(fill_method=None)
 price2 = price.pivot(index='date_raw', columns='ticker', values='ret').iloc[1:,]
 
 c20 = price2.rolling(20).corr(pairwise=True).xs('SPY', level=1, drop_level=True).drop('SPY', axis=1).mean(axis=1)
@@ -45,10 +45,10 @@ output.drop('date_raw', axis=1).to_excel(f'codes/A.sp500_implied_correlation_dai
 # Buy into MoM + Rev
 ##########################################
 price.sort_values(by=['ticker', 'date_raw'], inplace=True)
-price['ret_20d'] = price.groupby(['ticker'])['close'].pct_change(20)
-price['ret_60d'] = price.groupby(['ticker'])['close'].pct_change(60)
-price['ret_125d'] = price.groupby(['ticker'])['close'].pct_change(125)
-price['ret_250d'] = price.groupby(['ticker'])['close'].pct_change(250)
+price['ret_20d'] = price.groupby(['ticker'])['close'].pct_change(20,fill_method=None)
+price['ret_60d'] = price.groupby(['ticker'])['close'].pct_change(60,fill_method=None)
+price['ret_125d'] = price.groupby(['ticker'])['close'].pct_change(125,fill_method=None)
+price['ret_250d'] = price.groupby(['ticker'])['close'].pct_change(250,fill_method=None)
 price['ret_250d/125d'] = (1+price['ret_250d']) / (1+price['ret_125d']) - 1
 
 rows = price['ticker'].eq('SPY')
