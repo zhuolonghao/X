@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import os
 
-date = '202408'
+date = '202409'
 
 _etf = {
     'sector':    	 ['VTI', 'https://institutional.vanguard.com/investments/product-details/fund/0970'],
