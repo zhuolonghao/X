@@ -2,8 +2,7 @@
 import pandas as pd
 from functools import reduce
 
-date = 202410
-date_fin = 202406
+date_fin = 202405
 
 ###########################################################
 # References
@@ -16,9 +15,12 @@ ref = ref.rename(columns={'sector': 'gics'})
 # Download prices
 ###########################################################
 exec(open('_utility/download_tickers_from_yfinance3.py').read())
-df = download(tickers=tickers, data_type="price", period="10y", interval="1mo")
-df.to_parquet(r'./codes/C.value_finder_monthly/price_monthly.parquet', compression='zstd', index=False)
-print('Completed: Monthly price')
+#df = download(tickers=tickers, data_type="price", period="10y", interval="1mo")
+#df.to_parquet(r'./codes/C.value_finder_monthly/price_monthly.parquet', compression='zstd', index=False)
+#print('Completed: Monthly price')
+df = download(tickers=tickers, data_type="price", period="1y", interval="1d")
+df.to_parquet(r'./codes/C.value_finder_monthly/price_daily.parquet', compression='zstd', index=False)
+print('Completed: Daily price')
 df = download(tickers=tickers, data_type="finQ")
 df.to_parquet(r'./codes/C.value_finder_monthly/finQ.parquet', compression='zstd', index=False)
 print('Completed: Financials, Quarterly')
@@ -27,11 +29,9 @@ print('Completed: Financials, Quarterly')
 ###########################################################
 # Price-based factors
 ###########################################################
-base = pd.read_parquet('./codes/C.value_finder_monthly/price_monthly.parquet')
+base = pd.read_parquet('./codes/C.value_finder_monthly/price_daily.parquet')
 base.columns = [x.lower() for x in base.columns]
-base = base.sort_values(['ticker', 'date_ym'])
-base = base[(base['date_ym']<str(date))]
-exec(open('_utility/Mom.py').read())
+exec(open('_utility/Mom_daily.py').read())
 mom = all_returns(base=base)
 mom = mom.sort_values(['ticker', 'date_ym']).groupby('ticker').tail(1)
 rows = mom['date_ym'] >= str(date_fin)
