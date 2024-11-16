@@ -3,7 +3,6 @@ import webbrowser as web
 web.open('https://www.finra.org/finra-data/browse-catalog/equity-short-interest/data')
 # download the most recent short interest data
 # by NYSE
-# by NNM
 
 import pandas as pd
 
@@ -16,13 +15,15 @@ data = data.replace('Infinity', None)
 data.to_parquet(r'./codes/B.short_squeeze_biweekly/others.parquet', compression='zstd', index=False)
 print('Completed: other information')
 data.columns = [x.lower() for x in data.columns]
-cols = ['ticker', 'longname', 'exchange', 'sector', 'industry', 'heldpercentinstitutions', 'sharesoutstanding']
+cols = ['ticker', 'longname', 'exchange', 'sector', 'industry', 'heldpercentinstitutions', 'floatshares']
 data = data[cols]
+data = data.rename(columns={'floatshares': 'sharesoutstanding'})
 
-short_interest = pd.concat([
-    pd.read_csv(r"C:/Users/longh/Downloads/equityshortinterest.zip", compression='zip'),
-    pd.read_csv(r"C:/Users/longh/Downloads/equityshortinterest (1).zip", compression='zip')
-    ])
+# short_interest = pd.concat([
+#     pd.read_csv(r"C:/Users/longh/Downloads/equityshortinterest.zip", compression='zip'),
+#     pd.read_csv(r"C:/Users/longh/Downloads/equityshortinterest (1).zip", compression='zip')
+#     ])
+short_interest = pd.read_csv(r"C:/Users/longh/Downloads/equityshortinterest.zip", compression='zip')
 short_interest['ticker'] = short_interest['Symbol'].transform(lambda x: x.replace(".", "-").replace("/", "-"))
 short_interest['sharesshort'] = short_interest['Current Short']
 short_interest['shareshort_prev'] = short_interest['Previous Short']
@@ -36,4 +37,4 @@ data2.to_excel(r'./codes/B.short_squeeze_biweekly/IO_short.xlsx', index=False)
 
 import os
 os.remove(r"C:/Users/longh/Downloads/equityshortinterest.zip")
-os.remove(r"C:/Users/longh/Downloads/equityshortinterest (1).zip")
+#os.remove(r"C:/Users/longh/Downloads/equityshortinterest (1).zip")
