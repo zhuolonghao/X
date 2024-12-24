@@ -1,0 +1,7 @@
+01.scoping 
+	who's peers/competitors to the target 
+02.credit
+	assess credit performance at industry and individual
+		industry: a group of peers
+		industry-alt: naics 
+		individuals: target vs most relevant vs better informed
