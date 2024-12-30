@@ -1,7 +1,6 @@
 01.scoping 
 	who's peers/competitors to the target 
-02.credit
-	assess credit performance at industry and individual
-		industry: a group of peers
-		industry-alt: naics 
-		individuals: target vs most relevant vs better informed
+02.credit (maybe skip as i still didn't know how to make most of it)
+	01.hand_pick: a group of peers' credit performance
+	02.target: credit performance
+
