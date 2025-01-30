@@ -62,6 +62,6 @@ metrics = ['year', 'date', 'cnt', 'company', 'gics sector', 'gics sub-industry',
 
 
 # Write results to Excel
-output_path = '04_monitoring\JPAM_2025\sp500_earning_source.xlsx'
+output_path = '04_monitoring\JPAM_2025\sp500_earning_sourcce\sp500_earning_source.xlsx'
 with pd.ExcelWriter(output_path, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
     df2[metrics].to_excel(writer, sheet_name='raw', index=False)
