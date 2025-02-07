@@ -38,7 +38,7 @@ volume['volume'] = volume.sum(axis=1)
 
 output = output.join(trend).join(volume['volume']).reset_index()
 output['date'] = output['date_raw'].dt.strftime('%Y-%m-%d')
-output.drop('date_raw', axis=1).to_excel(f'sp500_component.xlsx', index=False)
+output.drop('date_raw', axis=1).to_excel(f'02_screening/02a_ETF_Cor1M_vs_3M/data/sp500_component.xlsx', index=False)
 
 
 ##########################################
@@ -67,5 +67,5 @@ cols1 = ['date_raw', 'ticker', 'close', 'volume']
 cols2 = ['rank_20+60+125', 'rank_20d', 'rank_60d', 'rank_125d', 'rank_250d', 'rank_250d/125d']
 price4 = pd.concat([price3[cols1+cols2],  trend[cols1]], ignore_index=True)
 price4['date'] = price4['date_raw'].dt.strftime('%Y-%m-%d')
-price4.drop('date_raw', axis=1).to_excel(f'sp500_mom_rev.xlsx', index=False)
+price4.drop('date_raw', axis=1).to_excel(f'02_screening/02a_ETF_Cor1M_vs_3M/data/sp500_mom_rev.xlsx', index=False)
 
