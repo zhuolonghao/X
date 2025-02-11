@@ -10,15 +10,16 @@ meta_sp600 = pd.read_excel(f"{folder}/meta.xlsx", sheet_name='sp600')
 meta_sp600 = meta_sp600.drop(np.where(meta_sp600.iloc[:,1]=='#INVALID COMPANY ID')[0])
 
 meta = pd.concat([meta_sp500,meta_sp400, meta_sp600], ignore_index=True)
-meta['ticker'] = meta['Constituents'].str\
+meta['Constituents'] = meta['Constituents'].str\
     .replace(r'NasdaqGS', 'NASDAQ', regex=True)\
     .replace(r'NasdaqCM', 'NASDAQ', regex=True)\
     .replace(r'NasdaqGM', 'NASDAQ', regex=True)\
     .replace(r'NYSEAM', 'NYSE', regex=True)
-price = pd.read_csv(f"{folder}/momentums.csv")
-price['ticker'] = price['Exchange']+ ':' + price['Symbol']
+price = pd.read_csv(f"{folder}/momentums.csv").drop('Industry', axis=1)
+price['Constituents'] = price['Exchange']+ ':' + price['Symbol']
 
-meta = meta.set_index('ticker')
-price = price.set_index('ticker')
+meta = meta.set_index('Constituents')
+price = price.set_index('Constituents')
 
 df = pd.merge(meta, price, how='left', left_index=True, right_index=True)
+df.to_excel(f"02_screening/023_Momentums/momentums.xlsx")
