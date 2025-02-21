@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-
+import os
 # Read the Excel file into a dictionary of dataframes
-file_path = "04_monitoring\JPAM_2025\sp500_earning_sourcce\data\SP500_components.xlsx"  # Replace with your actual file path
+file_path = f"01_macro_economic/SP500_earnings/data/SP500_components.xlsx"  # Replace with your actual file path
 dfs = pd.read_excel(file_path, sheet_name=None, skiprows=2)  # None reads all sheets into a dictionary
 
 # Display the sheet names
@@ -34,13 +34,9 @@ for c in cols:
     tmp2 = tmp.sum()
     c2 = c[3:]+c[1:3]
     _list.append([c2, tmp2['net_income'], tmp2['revenue'], tmp2['net_income']/tmp2['revenue'], tmp2['share']])
-    for sec in sectors:
-        tickers_in_sector = meta2[meta2['Sector'].eq(sec)]
-        tmp2 = pd.concat([tickers_in_sector, tmp], axis=1).dropna()
-        tmp2 = tmp2.reset_index()
-        tmp2['Quarter'] = c2
-        tmp2['Index'] = 'SP500'
-        output_sec = pd.concat([output_sec, tmp2])
+    tmp['Quarter'] = c2
+    tmp['index'] = 'SP600'
+    output_sec = pd.concat([output_sec, tmp.reset_index()])
 columns = ['Quarter', 'Earnings', 'Revenue', 'Net Income Margin', 'Shares']
 output = pd.DataFrame(_list, columns=columns)
 
@@ -48,7 +44,7 @@ output = pd.DataFrame(_list, columns=columns)
 ################################################################################
 
 # Read the Excel file into a dictionary of dataframes
-file_path = "04_monitoring\JPAM_2025\sp500_earning_sourcce\data\SP400_components.xlsx"  # Replace with your actual file path
+file_path = "01_macro_economic/SP500_earnings/data/SP400_components.xlsx"  # Replace with your actual file path
 dfs = pd.read_excel(file_path, sheet_name=None, skiprows=2)  # None reads all sheets into a dictionary
 
 # Display the sheet names
@@ -78,13 +74,9 @@ for c in cols:
     tmp2 = tmp.sum()
     c2 = c[3:] + c[1:3]
     _list.append([c2, tmp2['net_income'], tmp2['revenue'], tmp2['net_income']/tmp2['revenue'], tmp2['share']])
-    for sec in sectors:
-        tickers_in_sector = meta3[meta3['Sector'].eq(sec)]
-        tmp2 = pd.concat([tickers_in_sector, tmp], axis=1).dropna()
-        tmp2 = tmp2.reset_index()
-        tmp2['Quarter'] = c2
-        tmp2['Index'] = 'SP400'
-        output_sec = pd.concat([output_sec, tmp2])
+    tmp['Quarter'] = c2
+    tmp['index'] = 'SP600'
+    output_sec = pd.concat([output_sec, tmp.reset_index()])
 columns = ['Quarter', 'Earnings', 'Revenue', 'Net Income Margin', 'Shares']
 output2 = pd.DataFrame(_list, columns=columns)
 
@@ -92,7 +84,7 @@ output2 = pd.DataFrame(_list, columns=columns)
 ################################################################################
 
 # Read the Excel file into a dictionary of dataframes
-file_path = "04_monitoring\JPAM_2025\sp500_earning_sourcce\data\SP600_components.xlsx"  # Replace with your actual file path
+file_path = "01_macro_economic/SP500_earnings/data/SP600_components.xlsx"  # Replace with your actual file path
 dfs = pd.read_excel(file_path, sheet_name=None, skiprows=2)  # None reads all sheets into a dictionary
 
 # Display the sheet names
@@ -123,18 +115,17 @@ for c in cols:
     tmp2 = tmp.sum()
     c2 = c[3:] + c[1:3]
     _list.append([c2, tmp2['net_income'], tmp2['revenue'], tmp2['net_income']/tmp2['revenue'], tmp2['share']])
-    for sec in sectors:
-        tickers_in_sector = meta4[meta4['Sector'].eq(sec)]
-        tmp2 = pd.concat([tickers_in_sector, tmp], axis=1).dropna()
-        tmp2 = tmp2.reset_index()
-        tmp2['Quarter'] = c2
-        tmp2['Index'] = 'SP600'
-        output_sec = pd.concat([output_sec, tmp2])
+    tmp['Quarter'] = c2
+    tmp['index'] = 'SP600'
+    output_sec = pd.concat([output_sec, tmp.reset_index()])
 columns = ['Quarter', 'Earnings', 'Revenue', 'Net Income Margin', 'Shares']
 output3 = pd.DataFrame(_list, columns=columns)
 
 
-with pd.ExcelWriter("04_monitoring\JPAM_2025\sp500_earning_sourcce\SPX_components.xlsx") as writer:
+meta = pd.concat([meta2, meta3, meta4]).reset_index()
+output_sec = pd.merge(meta, output_sec, on='Constituents', how='inner')
+
+with pd.ExcelWriter("01_macro_economic/SP500_earnings/SPX_components.xlsx") as writer:
     output.to_excel(writer, sheet_name='sp500', index=False)
     output2.to_excel(writer, sheet_name='sp400', index=False)
     output3.to_excel(writer, sheet_name='sp600', index=False)

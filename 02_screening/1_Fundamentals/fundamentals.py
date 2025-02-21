@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-folder = '02_screening/022_Fundamentals/data'
+folder = '02_screening/1_Fundamentals/data'
 sheets = ['meta',
     'net_income_q', 'roa_q', 'cfo_q',
     'shares_q', 'leverage_q', 'curr_ratio_q',
@@ -27,5 +27,8 @@ for f in files:
     tmp4['index'] = f[:5]
     _dfs[f] = tmp4
 
-pd.concat(_dfs.values(), ignore_index=True).to_excel('02_screening/022_Fundamentals/fundamentals.xlsx')
+output = pd.concat(_dfs.values(), ignore_index=True)\
+output['value_lag4'] = output.groupby(['Constituents','variable'])['value'].shift(-4)
+
+output.to_excel('02_screening/1_Fundamentals/fundamentals.xlsx')
 print('Completed')
