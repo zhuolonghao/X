@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
 import os
-folder = f'{os.getcwd()}\\data'
+folder = f'C:\\Users\\longh\\Desktop\\X\\02_screening\\2_Momentums\\data'
 meta_sp500 = pd.read_excel(f"{folder}\\meta.xlsx", sheet_name='sp500')
-meta_sp500 = meta_sp500.drop(np.where(meta_sp500.iloc[:,1]=='#INVALID COMPANY ID')[0])
+meta_sp500 = meta_sp500.drop(np.where(meta_sp500.iloc[:,2]=='#INVALID COMPANY ID')[0])
 meta_sp400 = pd.read_excel(f"{folder}\\meta.xlsx", sheet_name='sp400')
-meta_sp400 = meta_sp400.drop(np.where(meta_sp400.iloc[:,1]=='#INVALID COMPANY ID')[0])
+meta_sp400 = meta_sp400.drop(np.where(meta_sp400.iloc[:,2]=='#INVALID COMPANY ID')[0])
 meta_sp600 = pd.read_excel(f"{folder}\\meta.xlsx", sheet_name='sp600')
-meta_sp600 = meta_sp600.drop(np.where(meta_sp600.iloc[:,1]=='#INVALID COMPANY ID')[0])
+meta_sp600 = meta_sp600.drop(np.where(meta_sp600.iloc[:,2]=='#INVALID COMPANY ID')[0])
 
 meta = pd.concat([meta_sp500,meta_sp400, meta_sp600], ignore_index=True)
 meta['Constituents'] = meta['Constituents'].str\
@@ -29,5 +29,5 @@ df['vol_3m / 1-yr avg vol'] = df['Avg_Daily_vol_over_3m / one-year avg daily_vol
 df['vol / vol_MA_10d'] = df['Relative Volume 1 day'].rank(pct=True)
 df['vol / vol_MA_10w'] = df['Relative Volume 1 week'].rank(pct=True)
 df['vol / vol_MA_10m'] = df['Relative Volume 1 month'].rank(pct=True)
-df.to_excel(f"{os.path.dirname(folder)}\\momentums.xlsx")
+df.to_excel(f"C:\\Users\\longh\\Desktop\\X\\02_screening\\2_Momentums\\momentums.xlsx")
 print("Completed")

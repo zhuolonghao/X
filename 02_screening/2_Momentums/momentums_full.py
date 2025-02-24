@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 import os
-folder = f'{os.getcwd()}\\data'
+folder = f'C:\\Users\\longh\\Desktop\\X\\02_screening\\2_Momentums\\data'
 meta = pd.read_excel(f"{folder}\\meta_full.xlsx", sheet_name='total_market')
-meta = meta.drop(np.where(meta.iloc[:,1]=='#INVALID COMPANY ID')[0])
+meta = meta.drop(np.where(meta.iloc[:,2]=='#INVALID COMPANY ID')[0])
 
 meta['Constituents'] = meta['Constituents'].str\
     .replace(r'NasdaqGS', 'NASDAQ', regex=True)\
@@ -27,5 +27,5 @@ df['vol_3m / 1-yr avg vol'] = df['Avg_Daily_vol_over_3m / one-year avg daily_vol
 df['vol / vol_MA_10d'] = df['Relative Volume 1 day'].rank(pct=True)
 df['vol / vol_MA_10w'] = df['Relative Volume 1 week'].rank(pct=True)
 df['vol / vol_MA_10m'] = df['Relative Volume 1 month'].rank(pct=True)
-df.to_excel(f"{os.path.dirname(folder)}\\momentums_full.xlsx")
+df.to_excel(f"C:\\Users\\longh\\Desktop\\X\\02_screening\\2_Momentums\\momentums_full.xlsx")
 print("Completed")

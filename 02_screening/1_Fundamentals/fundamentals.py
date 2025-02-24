@@ -27,7 +27,7 @@ for f in files:
     tmp4['index'] = f[:5]
     _dfs[f] = tmp4
 
-output = pd.concat(_dfs.values(), ignore_index=True)\
+output = pd.concat(_dfs.values(), ignore_index=True)
 output['value_lag4'] = output.groupby(['Constituents','variable'])['value'].shift(-4)
 
 output.to_excel('02_screening/1_Fundamentals/fundamentals.xlsx')
