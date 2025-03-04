@@ -9,7 +9,7 @@ folder = os.getcwd()
 sns.set(style='ticks')
 from matplotlib.backends.backend_pdf import PdfPages
 
-years = ['2020', '2021', '2022', '2023', '2024']
+years = ['2020', '2021', '2022', '2023', '2024', '2025']
 
 lvl1 = ['DPCERA', 'DGDSRA', 'DDURRA', 'DSERRA']
 lvl2 = lvl1 + ['DMOTRA', 'DFDHRA', 'DREQRA', 'DODGRA', 'DFXARA', 'DCLORA', 'DGOERA', 'DONGRA', 'DHCERA', 'DHUTRA', 'DHLCRA', 'DTRSRA', 'DRCARA', 'DFSARA', 'DIFSRA', 'DOTSRA']
@@ -80,7 +80,7 @@ for y in years:
         _price[y] = beaapi.get_data(beakey, datasetname='NIPA', TableName='T20404', Frequency='Q', Year=y)
         _pce[y] = beaapi.get_data(beakey, datasetname='NIPA', TableName='T20405', Frequency='Q', Year=y)
     except:
-        print(f'Year {y} is not available')
+        print(f'Granular PCE: Year {y} is not available')
 
 Qreal = pd.concat(_real.values(), axis=0).sort_values(['SeriesCode', 'TimePeriod'])
 Qprice = pd.concat(_price.values(), axis=0).sort_values(['SeriesCode', 'TimePeriod'])
