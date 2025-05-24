@@ -8,8 +8,9 @@ import time
 
 
 # https://www.bls.gov/cpi/tables/supplemental-files/
-folder_path = os.getcwd()
+#folder_path = os.getcwd()
 # List all .xlsx files in the folder
+folder_path = "C:\\Users\\longh\\Desktop\\X\\01_macro_economic\\CPI"
 xlsx_files = [f for f in os.listdir(folder_path) if f.endswith('.xlsx')]
 xlsx_files2 = [f for f in xlsx_files if f.startswith('news-release-table7')]
 

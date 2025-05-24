@@ -3,7 +3,7 @@ import requests
 from functools import reduce
 import os
 
-folder = os.getcwd()
+folder = "C:\\Users\\longh\\Desktop\\X\\01_macro_economic\\Industrial_production"
 my_items ={
     'All industry ex-high tech': 'Total_ex._computers,_communications_eq.,_and_semiconductors"',
     'Computer Equip': 'Computer_and_peripheral_equipment_NAICS=3341"',

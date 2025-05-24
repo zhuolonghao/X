@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-folder = '02_screening/1_Fundamentals/data'
+folder = r'C:\Users\longh\Desktop\X\02_screening\1_Fundamentals\data'
 sheets = ['meta',
     'net_income_q', 'roa_q', 'cfo_q',
     'shares_q', 'leverage_q', 'curr_ratio_q',
