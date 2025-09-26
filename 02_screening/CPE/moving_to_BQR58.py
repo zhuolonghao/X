@@ -107,6 +107,7 @@ output = automate3[rows][columns].set_index('ticker').join(
     first_below_30[['ticker', 'rn']].rename(columns={"rn": "down_30"}).set_index('ticker'))
 
 
+result_ret = {}
 
 asap = automate2[(automate2['rn']>=7) & (automate2['rn']<=150)].copy()
 asap['close_max'] = asap.groupby('ticker')['close'].transform('max')
@@ -146,6 +147,8 @@ asap3['ret_date_30'] = np.fmin(asap3['Gain Date'], asap3['exit_dt_down_30'])
 columns = ['cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 asap3 = asap3[columns]
 
+result_ret['bqr5_asap_20'] = asap3['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_asap_30'] = asap3['cum_ret_exit_30'].dropna().to_list()
 
 ### Material movement by 10%
 h2c = output.reset_index('ticker')
@@ -190,7 +193,8 @@ h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_material_10 = h2c4[columns]
 
-
+result_ret['bqr5_move10_ext20'] = h2c_material_10['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_move10_ext30'] = h2c_material_10['cum_ret_exit_30'].dropna().to_list()
 
 ### Material movement by 20%
 h2c = output.reset_index('ticker')
@@ -235,6 +239,8 @@ h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_material_20 = h2c4[columns]
 
+result_ret['bqr5_move20_ext20'] = h2c_material_20['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_move20_ext30'] = h2c_material_20['cum_ret_exit_30'].dropna().to_list()
 
 
 
@@ -281,6 +287,8 @@ h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_material_30 = h2c4[columns]
 
+result_ret['bqr5_move30_ext20'] = h2c_material_30['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_move30_ext30'] = h2c_material_30['cum_ret_exit_30'].dropna().to_list()
 
 
 
@@ -327,6 +335,11 @@ h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_down_10 = h2c4[columns]
 
+result_ret['bqr5_down10_ext20'] = h2c_down_10['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_down10_ext30'] = h2c_down_10['cum_ret_exit_30'].dropna().to_list()
+
+
+
 ### Material down by 20%
 h2c = output.reset_index('ticker')
 h2c['Action'] = np.maximum(7, h2c['down_20'])
@@ -369,6 +382,10 @@ h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30'])
 h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_down_20 = h2c4[columns]
+
+result_ret['bqr5_down20_ext20'] = h2c_down_20['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_down20_ext30'] = h2c_down_20['cum_ret_exit_30'].dropna().to_list()
+
 
 ### Material down by 30%
 h2c = output.reset_index('ticker')
@@ -413,38 +430,22 @@ h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_down_30 = h2c4[columns]
 
+result_ret['bqr5_down30_ext20'] = h2c_down_30['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr5_down30_ext30'] = h2c_down_30['cum_ret_exit_30'].dropna().to_list()
 
-output\
+
+
+result = output\
     .join(asap3, rsuffix='_asap')\
     .join(h2c_down_10,  rsuffix="_down_10") \
     .join(h2c_down_20, rsuffix="_down_20") \
     .join(h2c_down_30, rsuffix="_down_30") \
     .join(h2c_material_10, rsuffix="_move_10") \
     .join(h2c_material_20, rsuffix="_move_20") \
-    .join(h2c_material_30, rsuffix="_move_30") \
-    .to_csv('strategy.csv')
+    .join(h2c_material_30, rsuffix="_move_30")
 
-######################
-# #####################
-# tickers_dict2 = {
-#     'SPHR': ['SPY'],# entertainment, no direct competitors
-#     'MODV': ['ADUS', 'BTSG'],# focused on the “last mile” of care for government and managed‑care members
-#  }
-#
-# _dict = {}
-# for x, peer in tickers_dict2.items():
-#     close_final_ind = close_final[close_final['ticker']==x]
-#     data2 = yf.download(peer, start="2020-01-01")
-#     benchmark = data2['Close'].reset_index()
-#     close_final_ind = pd.merge(close_final_ind, benchmark, on='Date', how='left')
-#     close_final_ind_final = close_final_ind[heads]
-#     for p in peer:
-#         tmp = close_final_ind.copy()
-#         tmp['close'] = tmp[p]
-#         tmp['ticker'] = tmp['ticker'].transform(lambda x: f"{x}_{p}")
-#         tmp = tmp[heads]
-#         close_final_ind_final = pd.concat([close_final_ind_final, tmp])
-#     _dict[x] = close_final_ind_final
-#
-# output = pd.concat(_dict.values())
-# output.to_excel('MOVING_to_BQR6.xlsx')
+ret = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in result_ret.items()]))
+
+with pd.ExcelWriter("strategy_BQR58.xlsx", engine="openpyxl") as writer:
+    result.to_excel(writer, sheet_name="result",)   # add index=False if you don’t want row numbers
+    ret.to_excel(writer, sheet_name="return", index=False)

@@ -1,38 +1,47 @@
 import numpy as np
 import yfinance as yf
 import pandas as pd
+# https://www.barchart.com/stocks/quotes/TSVT/interactive-chart
+# ['BRK.A', 'NBR.GV', 'MAXR', 'PRSC', 'BNYBM81', 'LGTC', 'CLGX', 'EQM', 'FBC', 'CTL', 'LOGM', 'MNI', 'MSG', 'FTREV', 'HNGR', 'SWM', 'QUMU']
+# ['NICK', 'TUP', 'VCSA', 'TSVT', 'TAST', 'NYCB', 'BLUE', 'GLT']:
+# ['SGP', 'KKD', 'RMK']:
+# ['CRVW']:
+
 
 # List of tickers (either as a space-separated string or a list)
 BQR6 = {
-    'IART': '2025-07-01', # down from 55
-    'ADTN': '2025-07-01', # up from 75
-    'ZIP': '2025-06-01', # down from 55
-    'TBI': '2025-04-01', # down from 58
-    'IRWD': '2025-03-01', # down from 58, further down from 65 to 75 on 2025-04-01
-    'FTRE': '2025-03-01', # down from 58
-    'SLAB': '2025-03-01', # down from 55
-    'SSP': '2025-03-01', # down from 58
-    'MMI': '2025-03-01', # up from 75
-    'SBGI': '2025-02-01', # DOWN FROM 58
-    'EDR': '2025-01-01', # DOWN FROM 58
-    'MATV': '2025-01-01', # DOWN FROM 58
-    'SMTC': '2025-01-01', # UP FROM 75
-    'SNAP': '2024-12-01', # UP FROM 75
-    'AGL': '2024-12-01', #DOWN FROM 58
-    'MXL': '2024-12-01', #DOWN FROM 58
-    'CATO': '2024-10-01', #DOWN FROM 58
-    'MRCY': '2024-09-01', #DONW FROM 58
-    'APPS': '2024-09-01', #DONW FROM 58
-    'VFC': '2024-08-01', #DONW FROM 58
-    'BA': '2024-08-01', #DONW FROM 58
-    'GTN': '2024-08-01', #DONW FROM 58
-    'TTEC': '2024-08-01', #DONW FROM 58
-    'MEI': '2024-07-01', #DONW FROM 58
-    'LTH': '2024-06-01', #DONW FROM 58
-    'MODV': '2024-06-01', #DONW FROM 58
-    'HE': '2024-05-01', #DONW FROM 58
-    'SPHR': '2024-05-01', #DONW FROM 58
-    'AKA': '2024-05-01', #DONW FROM 58
+    'MRCY': '2024-09-01',
+    'MXL': '2024-12-01',
+    # 'TAST': 58-65 on '2022-03-01', 65-75 on '2022-09-01', 75-65 on '2023-06-01', 65-58 on '2023-09-01', 58-55 on '2024-01-01'. delisted on '2024-06-01' Popeyes bought BurgerKings
+    'MPW': '2024-03-01', # 55-65 ON 2024.03.01, 75 ON 2024.05.01, 65 ON 2024.12.01
+    'FNKO': '2023-03-01', # 52-62 ON 2023.03.01, 75 ON 2023.04.01, 65 ON 2024.09, 58 ON 2025.04, 65 ON 2025.06
+    'HBIO': '2023-09-01',
+    'HAIN': '2023-09-01',
+    'SMG': '2023-07-01', # 58-65 ON 2023.07, 58 ON 2024.12
+    'CNDT': '2024-01-01',
+    'MMI': '2023-08-01', # 58-65 ON 2023.08, 75 ON 2024-05, 65 2025.03
+    'MEI': '2024-07-01',
+    'WWW': '2023-09-01', # 58-65 202309, 58 202403, 65 202404
+    'MCS': '2022-03-01', # 75-65 202203, 58-65 202304
+    'BVS': '2022-12-01', # 58-65 202212, 75 202302 65 202401
+    'SNAP': '2023-05-01', # 58-65 202305 75 202309 65 202412
+    'EHAB': '2023-10-01', # 55-65 202310
+    'CAKE': '2021-06-01',
+    'DAL': '2022-11-01',
+    'LUV': '2022-01-01', # 75-65 202201 75 202203 65 202209
+    'IHG': '2021-04-01',
+    'MATV': '2025-01-01', # SWM MERGED WITH ANOTHER AND BECAME MATV
+    'WLFC': '2021-03-01', #58-65 202103 75 202203 65 202311
+    'IOVA': '2024-03-01',
+    'TEN': '2021-03-01', #75-65, 202103 65 202209 ### COMPLEX LOAN RELATIONSHIP BTW CIB AND CB ABL
+    'AGL': '2024-12-01', #75-65, 202112, 58 202311, 65 202412, 75 202508
+    #'MAXR': '2021-06-01', 75-65, 202106, 75 202109, 65 202209, # DELISTED ON 202305
+    'CRNC': '2023-03-01', # 58-65 202303, 75 202411
+    'NAII': '2023-03-01', # 55-65 202303, 75 202409,
+    'BA': '2021-03-01', # 55-65 202103 58 202305 65 202408
+    'HXL': '2021-03-01', # 58-65, 202103, 55 202203,
+    'SMTC': '2023-05-01', # 58-65 202305 75 202306 65 202501
+    'HE': '2023-08-01', # 42-65 202308 75 202309 65 202404
 }
 
 BQR7 = {
