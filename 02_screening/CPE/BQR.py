@@ -8,23 +8,43 @@ with open("_consolidate.py") as f:
     exec(code)
 
 # List of tickers (either as a space-separated string or a list)
-tickers_dict = CPE888
+tickers_dict = []
+tickers_dict2 = []
+for b in BQR:
+    if b[0] not in tickers_dict:
+        tickers_dict.append(b[0])
+        for bb in b[1]:
+            tickers_dict2.append({'ticker': b[0], 'start_date': bb[0], 'ticker_alt': b[0]+'.'+bb[1]+'.'+bb[0][:4]+bb[0][5:7]})
+    else:
+        print(b[0])
+
 
 # Download historical data
-data = yf.download(list(tickers_dict.keys()), start="2020-01-01")
+data = yf.download(tickers_dict, start="2020-01-01")
 
 # 2025.9.13
 vol = data['Volume'].reset_index()
 vol = pd.melt(vol, id_vars='Date', var_name='ticker', value_name='Volume')
-
-#
 close = data['Close'].reset_index()
 close = pd.melt(close, id_vars='Date', var_name='ticker', value_name='close')
-tickers = pd.DataFrame.from_dict(tickers_dict, orient='index').reset_index()
-tickers.columns = ['ticker', 'start_date']
-#tickers['start_date2'] = pd.to_datetime(tickers['start_date']) + pd.DateOffset(months=1) + pd.Timedelta(days=7)
+close.set_index(['Date', 'ticker'])\
+    .join(vol.set_index(['Date', 'ticker']))\
+    .to_excel('BQR_vol.xlsx')
+
+
+#### Automate
+#2025.10.20
+# trim the size
+tickers = pd.DataFrame(tickers_dict2, columns=['ticker', 'start_date', 'ticker_alt'])
 tickers['start_date2'] = pd.to_datetime(tickers['start_date']) + pd.DateOffset(months=1)
-close = pd.merge(close, tickers, on='ticker', how='left')
+tickers['GroupIndex'] = tickers.groupby('ticker').cumcount() + 1
+
+close_dict = {}
+for i in range(1, tickers['GroupIndex'].max()+1):
+    tickers2 = tickers[tickers['GroupIndex']==i]
+    close_dict[i] = pd.merge(close, tickers, on='ticker', how='inner')
+close = pd.concat(close_dict.values(), ignore_index=True)
+close = close.drop(columns=['ticker']).rename(columns={'ticker_alt': 'ticker'})
 
 rows = close['start_date2'] <= close['Date']
 close2 = close[rows].copy()
@@ -36,13 +56,9 @@ close3['rn'] = close3.groupby('ticker').cumcount()
 close3['rn'] = - close3['rn']
 
 close_final = pd.concat([close2, close3]).drop_duplicates()
-heads = close_final.columns
-close_final.set_index(['Date', 'ticker'])\
-    .join(vol.set_index(['Date', 'ticker']))\
-    .to_excel('CPE888_vol.xlsx')
 
 ######################
-automate = pd.read_excel('CPE888_vol.xlsx').sort_values(['ticker', 'rn'])
+automate = close_final.sort_values(['ticker', 'rn'])
 automate['Price Date'] = np.where(automate['rn']==0, automate['start_date2'], automate['Date'])
 automate2 = automate.groupby(['ticker', 'start_date', 'Price Date', 'rn'], as_index=False)['close'].mean()
 automate2['Price Date'] = automate2['Price Date'].astype('str')
@@ -123,32 +139,32 @@ asap["Pain Date"] = asap.groupby("ticker")["Pain Date"].transform(
 asap["cum_return"] = asap.groupby("ticker")["close"] \
                      .transform(lambda x: x / x.iloc[0] - 1)
 asap["avg_cum_return"] = asap.groupby("ticker")["cum_return"].transform("mean")
-first_above_20 = asap.groupby("ticker", ).apply(
-    lambda g: g.loc[g["cum_return"] > 0.2].head(1), include_groups=False
+first_below_20 = asap.groupby("ticker", ).apply(
+    lambda g: g.loc[g["cum_return"] < -0.2].head(1), include_groups=False
 ).reset_index()
-first_above_30 = asap.groupby("ticker", ).apply(
-    lambda g: g.loc[g["cum_return"] > 0.3].head(1), include_groups=False
+first_below_30 = asap.groupby("ticker", ).apply(
+    lambda g: g.loc[g["cum_return"] < -0.3].head(1), include_groups=False
 ).reset_index()
 asap2 = asap[asap['rn']==7].copy()
 asap2['Gain_ret'] = asap2['close_max'] / asap2['close'] - 1
 asap2['Pain_ret'] = asap2['close_min'] / asap2['close'] - 1
-asap2['Pain_ret'] = np.where((asap2['Pain Date'] > 25) , asap2['Pain_ret'], asap2['avg_cum_return'])
-asap2['Pain Date'] = np.where((asap2['Pain Date'] > 25), asap2['Pain Date'],999)
-columns = ['ticker', 'Pain_ret', 'Pain Date']
+asap2['Gain_ret'] = np.where((asap2['Gain Date'] > 25) , asap2['Gain_ret'], asap2['avg_cum_return'])
+asap2['Gain Date'] = np.where((asap2['Gain Date'] > 25), asap2['Gain Date'],999)
+columns = ['ticker', 'Gain_ret', 'Gain Date']
 asap3 = asap2[columns].set_index('ticker').join(
     first_below_20[['ticker', 'rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'}).set_index('ticker')).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'}).set_index('ticker')).join(
     first_below_30[['ticker', 'rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}).set_index('ticker'))
-asap3['cum_ret_exit_20'] = np.where((asap3['Pain Date'] < asap3['exit_dt_up_20']) | (asap3['exit_dt_up_20']).isna(), asap3['Pain_ret'], asap3['return_exit_20'])
-asap3['ret_date_20'] = np.fmin(asap3['Pain Date'], asap3['exit_dt_up_20'])
-asap3['cum_ret_exit_30'] = np.where((asap3['Pain Date'] < asap3['exit_dt_up_30']) | (asap3['exit_dt_up_30']).isna(), asap3['Pain_ret'], asap3['return_exit_30'])
-asap3['ret_date_30'] = np.fmin(asap3['Pain Date'], asap3['exit_dt_up_30'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}).set_index('ticker'))
+asap3['cum_ret_exit_20'] = np.where((asap3['Gain Date'] < asap3['exit_dt_down_20']) | (asap3['exit_dt_down_20']).isna(), asap3['Gain_ret'], asap3['return_exit_20'])
+asap3['ret_date_20'] = np.fmin(asap3['Gain Date'], asap3['exit_dt_down_20'])
+asap3['cum_ret_exit_30'] = np.where((asap3['Gain Date'] < asap3['exit_dt_down_30']) | (asap3['exit_dt_down_30']).isna(), asap3['Gain_ret'], asap3['return_exit_30'])
+asap3['ret_date_30'] = np.fmin(asap3['Gain Date'], asap3['exit_dt_down_30'])
 columns = ['cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 asap3 = asap3[columns]
 
-result_ret['cpe888_asap_20'] = asap3['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_asap_30'] = asap3['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_asap_20'] = asap3['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_asap_30'] = asap3['cum_ret_exit_30'].dropna().to_list()
 
 ### Material movement by 10%
 h2c = output.reset_index('ticker')
@@ -178,23 +194,23 @@ first_below_30 = h2c2.groupby("ticker", as_index=False).apply(
 h2c3 = h2c2.groupby('ticker').head(1).copy()
 h2c3['Gain_ret'] = h2c3['close_max'] / h2c3['close'] - 1
 h2c3['Pain_ret'] = h2c3['close_min'] / h2c3['close'] - 1
-h2c3["Pain_ret"] = h2c3["Gain_ret"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
-h2c3["Pain Date"] = h2c3["Pain Date"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), 999)
-columns = ['Action', 'Pain_ret', 'Pain Date']
+h2c3["Gain_ret"] = h2c3["Gain_ret"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
+h2c3["Gain Date"] = h2c3["Gain Date"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), 999)
+columns = ['Action', 'Gain_ret', 'Gain Date']
 h2c4 = h2c3[columns].join(
     first_below_20[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'})).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'})).join(
     first_below_30[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}))
-h2c4['cum_ret_exit_20'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_20']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_20'])
-h2c4['ret_date_20'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
-h2c4['cum_ret_exit_30'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_30']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_30'])
-h2c4['ret_date_30'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}))
+h2c4['cum_ret_exit_20'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_20']) | (h2c4['exit_dt_down_20']).isna(), h2c4['Gain_ret'], h2c4['return_exit_20'])
+h2c4['ret_date_20'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_20'])
+h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30']) | (h2c4['exit_dt_down_30']).isna(), h2c4['Gain_ret'], h2c4['return_exit_30'])
+h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_material_10 = h2c4[columns]
 
-result_ret['cpe888_move10_ext20'] = h2c_material_10['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_move10_ext30'] = h2c_material_10['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_move10_ext20'] = h2c_material_10['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_move10_ext30'] = h2c_material_10['cum_ret_exit_30'].dropna().to_list()
 
 ### Material movement by 20%
 h2c = output.reset_index('ticker')
@@ -224,23 +240,23 @@ first_below_30 = h2c2.groupby("ticker", as_index=False).apply(
 h2c3 = h2c2.groupby('ticker').head(1).copy()
 h2c3['Gain_ret'] = h2c3['close_max'] / h2c3['close'] - 1
 h2c3['Pain_ret'] = h2c3['close_min'] / h2c3['close'] - 1
-h2c3["Pain_ret"] = h2c3["Gain_ret"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
-h2c3["Pain Date"] = h2c3["Pain Date"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), 999)
-columns = ['Action', 'Pain_ret', 'Pain Date']
+h2c3["Gain_ret"] = h2c3["Gain_ret"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
+h2c3["Gain Date"] = h2c3["Gain Date"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), 999)
+columns = ['Action', 'Gain_ret', 'Gain Date']
 h2c4 = h2c3[columns].join(
     first_below_20[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'})).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'})).join(
     first_below_30[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}))
-h2c4['cum_ret_exit_20'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_20']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_20'])
-h2c4['ret_date_20'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
-h2c4['cum_ret_exit_30'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_30']) | (h2c4['exit_dt_up_30']).isna(), h2c4['Pain_ret'], h2c4['return_exit_30'])
-h2c4['ret_date_30'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_30'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}))
+h2c4['cum_ret_exit_20'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_20']) | (h2c4['exit_dt_down_20']).isna(), h2c4['Gain_ret'], h2c4['return_exit_20'])
+h2c4['ret_date_20'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_20'])
+h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30']) | (h2c4['exit_dt_down_30']).isna(), h2c4['Gain_ret'], h2c4['return_exit_30'])
+h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_material_20 = h2c4[columns]
 
-result_ret['cpe888_move20_ext20'] = h2c_material_20['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_move20_ext30'] = h2c_material_20['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_move20_ext20'] = h2c_material_20['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_move20_ext30'] = h2c_material_20['cum_ret_exit_30'].dropna().to_list()
 
 
 
@@ -272,23 +288,23 @@ first_below_30 = h2c2.groupby("ticker", as_index=False).apply(
 h2c3 = h2c2.groupby('ticker').head(1).copy()
 h2c3['Gain_ret'] = h2c3['close_max'] / h2c3['close'] - 1
 h2c3['Pain_ret'] = h2c3['close_min'] / h2c3['close'] - 1
-h2c3["Pain_ret"] = h2c3["Gain_ret"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
-h2c3["Pain Date"] = h2c3["Pain Date"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), 999)
-columns = ['Action', 'Pain_ret', 'Pain Date']
+h2c3["Gain_ret"] = h2c3["Gain_ret"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
+h2c3["Gain Date"] = h2c3["Gain Date"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), 999)
+columns = ['Action', 'Gain_ret', 'Gain Date']
 h2c4 = h2c3[columns].join(
     first_below_20[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'})).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'})).join(
     first_below_30[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}))
-h2c4['cum_ret_exit_20'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_20']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_20'])
-h2c4['ret_date_20'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
-h2c4['cum_ret_exit_30'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_30']) | (h2c4['exit_dt_up_30']).isna(), h2c4['Pain_ret'], h2c4['return_exit_30'])
-h2c4['ret_date_30'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_30'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}))
+h2c4['cum_ret_exit_20'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_20']) | (h2c4['exit_dt_down_20']).isna(), h2c4['Gain_ret'], h2c4['return_exit_20'])
+h2c4['ret_date_20'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_20'])
+h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30']) | (h2c4['exit_dt_down_30']).isna(), h2c4['Gain_ret'], h2c4['return_exit_30'])
+h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_material_30 = h2c4[columns]
 
-result_ret['cpe888_move30_ext20'] = h2c_material_30['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_move30_ext30'] = h2c_material_30['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_move30_ext20'] = h2c_material_30['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_move30_ext30'] = h2c_material_30['cum_ret_exit_30'].dropna().to_list()
 
 
 
@@ -320,23 +336,23 @@ first_below_30 = h2c2.groupby("ticker", as_index=False).apply(
 h2c3 = h2c2.groupby('ticker').head(1).copy()
 h2c3['Gain_ret'] = h2c3['close_max'] / h2c3['close'] - 1
 h2c3['Pain_ret'] = h2c3['close_min'] / h2c3['close'] - 1
-h2c3["Pain_ret"] = h2c3["Gain_ret"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
-h2c3["Pain Date"] = h2c3["Pain Date"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), 999)
-columns = ['Action', 'Pain_ret', 'Pain Date']
+h2c3["Gain_ret"] = h2c3["Gain_ret"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
+h2c3["Gain Date"] = h2c3["Gain Date"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), 999)
+columns = ['Action', 'Gain_ret', 'Gain Date']
 h2c4 = h2c3[columns].join(
     first_below_20[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'})).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'})).join(
     first_below_30[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}))
-h2c4['cum_ret_exit_20'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_20']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_20'])
-h2c4['ret_date_20'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
-h2c4['cum_ret_exit_30'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_30']) | (h2c4['exit_dt_up_30']).isna(), h2c4['Pain_ret'], h2c4['return_exit_30'])
-h2c4['ret_date_30'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_30'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}))
+h2c4['cum_ret_exit_20'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_20']) | (h2c4['exit_dt_down_20']).isna(), h2c4['Gain_ret'], h2c4['return_exit_20'])
+h2c4['ret_date_20'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_20'])
+h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30']) | (h2c4['exit_dt_down_30']).isna(), h2c4['Gain_ret'], h2c4['return_exit_30'])
+h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_down_10 = h2c4[columns]
 
-result_ret['cpe888_down10_ext20'] = h2c_down_10['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_down10_ext30'] = h2c_down_10['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_down10_ext20'] = h2c_down_10['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_down10_ext30'] = h2c_down_10['cum_ret_exit_30'].dropna().to_list()
 
 
 
@@ -368,23 +384,23 @@ first_below_30 = h2c2.groupby("ticker", as_index=False).apply(
 h2c3 = h2c2.groupby('ticker').head(1).copy()
 h2c3['Gain_ret'] = h2c3['close_max'] / h2c3['close'] - 1
 h2c3['Pain_ret'] = h2c3['close_min'] / h2c3['close'] - 1
-h2c3["Pain_ret"] = h2c3["Gain_ret"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
-h2c3["Pain Date"] = h2c3["Pain Date"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), 999)
-columns = ['Action', 'Pain_ret', 'Pain Date']
+h2c3["Gain_ret"] = h2c3["Gain_ret"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
+h2c3["Gain Date"] = h2c3["Gain Date"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), 999)
+columns = ['Action', 'Gain_ret', 'Gain Date']
 h2c4 = h2c3[columns].join(
     first_below_20[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'})).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'})).join(
     first_below_30[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}))
-h2c4['cum_ret_exit_20'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_20']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_20'])
-h2c4['ret_date_20'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
-h2c4['cum_ret_exit_30'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_30']) | (h2c4['exit_dt_up_30']).isna(), h2c4['Pain_ret'], h2c4['return_exit_30'])
-h2c4['ret_date_30'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_30'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}))
+h2c4['cum_ret_exit_20'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_20']) | (h2c4['exit_dt_down_20']).isna(), h2c4['Gain_ret'], h2c4['return_exit_20'])
+h2c4['ret_date_20'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_20'])
+h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30']) | (h2c4['exit_dt_down_30']).isna(), h2c4['Gain_ret'], h2c4['return_exit_30'])
+h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_down_20 = h2c4[columns]
 
-result_ret['cpe888_down20_ext20'] = h2c_down_20['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_down20_ext30'] = h2c_down_20['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_down20_ext20'] = h2c_down_20['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_down20_ext30'] = h2c_down_20['cum_ret_exit_30'].dropna().to_list()
 
 
 ### Material down by 30%
@@ -415,23 +431,23 @@ first_below_30 = h2c2.groupby("ticker", as_index=False).apply(
 h2c3 = h2c2.groupby('ticker').head(1).copy()
 h2c3['Gain_ret'] = h2c3['close_max'] / h2c3['close'] - 1
 h2c3['Pain_ret'] = h2c3['close_min'] / h2c3['close'] - 1
-h2c3["Pain_ret"] = h2c3["Gain_ret"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
-h2c3["Pain Date"] = h2c3["Pain Date"].where((h2c3["Pain Date"] >= (25+h2c3["Action"])), 999)
-columns = ['Action', 'Pain_ret', 'Pain Date']
+h2c3["Gain_ret"] = h2c3["Gain_ret"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), h2c3["avg_cum_return"])
+h2c3["Gain Date"] = h2c3["Gain Date"].where((h2c3["Gain Date"] >= (25+h2c3["Action"])), 999)
+columns = ['Action', 'Gain_ret', 'Gain Date']
 h2c4 = h2c3[columns].join(
     first_below_20[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_20", 'cum_return': 'return_exit_20'})).join(
+        columns={"rn": "exit_dt_down_20", 'cum_return': 'return_exit_20'})).join(
     first_below_30[['rn', 'cum_return']].rename(
-        columns={"rn": "exit_dt_up_30", 'cum_return': 'return_exit_30'}))
-h2c4['cum_ret_exit_20'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_20']) | (h2c4['exit_dt_up_20']).isna(), h2c4['Pain_ret'], h2c4['return_exit_20'])
-h2c4['ret_date_20'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_20'])
-h2c4['cum_ret_exit_30'] = np.where((h2c4['Pain Date'] < h2c4['exit_dt_up_30']) | (h2c4['exit_dt_up_30']).isna(), h2c4['Pain_ret'], h2c4['return_exit_30'])
-h2c4['ret_date_30'] = np.fmin(h2c4['Pain Date'], h2c4['exit_dt_up_30'])
+        columns={"rn": "exit_dt_down_30", 'cum_return': 'return_exit_30'}))
+h2c4['cum_ret_exit_20'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_20']) | (h2c4['exit_dt_down_20']).isna(), h2c4['Gain_ret'], h2c4['return_exit_20'])
+h2c4['ret_date_20'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_20'])
+h2c4['cum_ret_exit_30'] = np.where((h2c4['Gain Date'] < h2c4['exit_dt_down_30']) | (h2c4['exit_dt_down_30']).isna(), h2c4['Gain_ret'], h2c4['return_exit_30'])
+h2c4['ret_date_30'] = np.fmin(h2c4['Gain Date'], h2c4['exit_dt_down_30'])
 columns = ['Action', 'cum_ret_exit_20', 'ret_date_20', 'cum_ret_exit_30', 'ret_date_30']
 h2c_down_30 = h2c4[columns]
 
-result_ret['cpe888_down30_ext20'] = h2c_down_30['cum_ret_exit_20'].dropna().to_list()
-result_ret['cpe888_down30_ext30'] = h2c_down_30['cum_ret_exit_30'].dropna().to_list()
+result_ret['bqr6_down30_ext20'] = h2c_down_30['cum_ret_exit_20'].dropna().to_list()
+result_ret['bqr6_down30_ext30'] = h2c_down_30['cum_ret_exit_30'].dropna().to_list()
 
 
 
@@ -446,6 +462,11 @@ result = output\
 
 ret = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in result_ret.items()]))
 
-with pd.ExcelWriter("strategy_cpe888.xlsx", engine="openpyxl") as writer:
+result2 = result.reset_index()
+result2[['ticker', 'from', 'to', 'period']] = result2['ticker'].str.extract(r'([A-Z]+)\.(\d+)-(\d+)\.(\d+)')
+
+with pd.ExcelWriter("strategy_BQR.xlsx", engine="openpyxl") as writer:
     result.to_excel(writer, sheet_name="result",)   # add index=False if you don’t want row numbers
+    result2.to_excel(writer, sheet_name="result2",)   # add index=False if you don’t want row numbers
     ret.to_excel(writer, sheet_name="return", index=False)
+
