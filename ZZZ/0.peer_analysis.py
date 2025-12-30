@@ -101,4 +101,4 @@ print("\n--- Summary Table ---")
 print(df.to_string(index=False))
 
 # Optional: Export to CSV
-df.T.to_csv("peer_analysis.csv", index=True)
+df.T.reset_index().to_csv("peer_analysis.csv", index=False)
