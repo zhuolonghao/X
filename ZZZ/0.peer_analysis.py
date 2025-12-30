@@ -21,7 +21,7 @@ def format_numbers(value):
     elif abs_val >= 1_000:
         return f"{value / 1_000:.2f}k"
     else:
-        return str(round(value, 2))
+        return str(round(value, 1))
 
 def safe_get(data_series, key, divisor=1e3):
     """
@@ -51,8 +51,8 @@ def get_stock_metrics(ticker_symbol):
         # Extraction logic with fallbacks for missing keys
         data = {
             'Ticker': ticker_symbol,
-            'mkt_cap': format_numbers(info['marketCap']),
-            'EV': format_numbers(info['enterpriseValue']),
+            'mkt_cap': info['marketCap']/1e6,
+            'EV': info['enterpriseValue']/1e6,
             'avg vol (3M)': format_numbers(info['averageDailyVolume3Month']),
             'avg vol (10D)': format_numbers(info['averageDailyVolume10Day']),
             'o/s shares': format_numbers(info['floatShares']),
