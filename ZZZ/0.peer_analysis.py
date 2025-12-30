@@ -56,6 +56,7 @@ def get_stock_metrics(ticker_symbol):
             'avg vol (3M)': format_numbers(info['averageDailyVolume3Month']),
             'avg vol (10D)': format_numbers(info['averageDailyVolume10Day']),
             'o/s shares': format_numbers(info['floatShares']),
+            '% Insider': format_numbers(info['heldPercentInsiders']),
             '% Inst.': format_numbers(info['heldPercentInstitutions']),
             '% Short': format_numbers(info['shortPercentOfFloat']),
             "cash": bs.iloc[:, 0]['Cash And Cash Equivalents'] / 1e3,
