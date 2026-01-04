@@ -11,7 +11,7 @@ def format_numbers(value):
     if abs(value) >= 1e9: return f"{value / 1e9:.2f}B"
     if abs(value) >= 1e6: return f"{value / 1e6:.2f}M"
     if abs(value) >= 1e3: return f"{value / 1e3:.2f}K"
-    return f"{value:.2f}"
+    return f"{value:.1f}"
 
 
 def safe_get(series, key, divisor=1):
@@ -19,7 +19,7 @@ def safe_get(series, key, divisor=1):
     return series.get(key, 0) / divisor
 
 
-def calculate_period_metrics(ic, cf, bs, label, date_obj):
+def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
     """
     Applies specific formulas to a given set of statements.
     Added 'date_obj' to handle the specific statement date.
@@ -32,6 +32,10 @@ def calculate_period_metrics(ic, cf, bs, label, date_obj):
     metrics = {
         'Period': label,
         'Statement Date': stmt_date,  # <--- New Row Added Here
+
+        'DSO': format_numbers(365 * bs_avg['Accounts Receivable'] / ic['Total Revenue']),
+        'DIO': format_numbers(365 * bs_avg['Inventory'] / ic['Cost Of Revenue']),
+        'DPO': format_numbers(365 * bs_avg['Accounts Payable'] / ic['Cost Of Revenue']),
 
         # Balance Sheet Snapshots (End of Period)
         "Cash": safe_get(bs, 'Cash And Cash Equivalents', 1e3),
@@ -86,7 +90,7 @@ def get_stock_time_series(ticker_symbol):
                 # Sum 4 quarters for P&L/Cashflow
                 ltm_ic = q_ic.iloc[:, i:i + 4].sum(axis=1)
                 ltm_cf = q_cf.iloc[:, i:i + 4].sum(axis=1)
-
+                avg_bs = q_bs.iloc[:, i:i + 4].mean(axis=1)
                 # Take snapshot for Balance Sheet (End of the specific quarter)
                 ltm_bs = q_bs.iloc[:, i]
 
@@ -96,7 +100,7 @@ def get_stock_time_series(ticker_symbol):
                 # Extract the date from the column header (Most recent quarter in the sums)
                 date_obj = q_ic.columns[i]
 
-                results.append(calculate_period_metrics(ltm_ic, ltm_cf, ltm_bs, label, date_obj))
+                results.append(calculate_period_metrics(ltm_ic, ltm_cf, ltm_bs, avg_bs, label, date_obj))
         else:
             print(f"Warning: {ticker_symbol} has insufficient quarterly data for 2 LTM periods.")
 
@@ -106,12 +110,13 @@ def get_stock_time_series(ticker_symbol):
             col_ic = a_ic.iloc[:, i]
             col_cf = a_cf.iloc[:, i]
             col_bs = a_bs.iloc[:, i]
+            col_avg_bs = a_bs.iloc[:, i:i+2].mean(axis=1)
 
             # Extract Year and Date
             period_date = a_ic.columns[i]  # This is the Timestamp
             label = f"FY {period_date.year}"
 
-            results.append(calculate_period_metrics(col_ic, col_cf, col_bs, label, period_date))
+            results.append(calculate_period_metrics(col_ic, col_cf, col_bs, col_avg_bs, label, period_date))
 
         # --- C. Build DataFrame ---
         df = pd.DataFrame(results)

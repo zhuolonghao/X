@@ -42,11 +42,12 @@ def get_stock_metrics(ticker_symbol):
         info = ticker.info
 
         # Calculate LTM (Last Twelve Months) by summing last 4 quarters
-        if cf.shape[1] < 4 or ic.shape[1] < 4:
+        if cf.shape[1] < 4 or ic.shape[1] < 4 or bs.shape[1] < 4:
             return {"Ticker": ticker_symbol, "Error": "Incomplete Q data"}
 
         cf_ltm = cf.iloc[:, :4].sum(axis=1)
         ic_ltm = ic.iloc[:, :4].sum(axis=1)
+        bs_avg = bs.iloc[:, :4].mean(axis=1)
 
         # Extraction logic with fallbacks for missing keys
         data = {
@@ -59,6 +60,9 @@ def get_stock_metrics(ticker_symbol):
             '% Insider': format_numbers(info['heldPercentInsiders']),
             '% Inst.': format_numbers(info['heldPercentInstitutions']),
             '% Short': format_numbers(info['shortPercentOfFloat']),
+            'DSO': format_numbers(365 * bs_avg['Accounts Receivable']/ic_ltm['Total Revenue']),
+            'DIO': format_numbers(365 * bs_avg['Inventory']/ic_ltm['Cost Of Revenue']),
+            'DPO': format_numbers(365 * bs_avg['Accounts Payable']/ic_ltm['Cost Of Revenue']),
             "cash": bs.iloc[:, 0]['Cash And Cash Equivalents'] / 1e3,
             "debt": bs.iloc[:, 0]['Total Debt'] / 1e3,
             'revenue_yoy': ic.iloc[:, 0]['Total Revenue'] / ic.iloc[:, 4]['Total Revenue'] - 1,
