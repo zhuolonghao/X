@@ -130,7 +130,8 @@ def get_stock_time_series(ticker_symbol):
 
 
 # --- Execution ---
-ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
+#ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
+ticker_list = ["FLWS"]
 
 for symbol in ticker_list:
     df_time_series = get_stock_time_series(symbol)
