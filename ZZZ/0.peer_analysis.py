@@ -30,6 +30,24 @@ def safe_get(data_series, key, divisor=1e3):
     """
     return data_series.get(key, 0) / divisor
 
+
+def calculate_op_income_waterfall(df):
+    # 1. Attempt to get manual components
+    # Note: yfinance uses 'Selling General Administrative' (no 'And')
+    rev = df.get('Total Revenue')
+    cor = df.get('Cost Of Revenue')
+    sga = df.get('Selling General And Administration')
+
+    # Check if all manual components exist and are not NaN
+    manual_components = [rev, cor, sga]
+
+    if all(v is not None for v in manual_components) and not any(pd.isna(manual_components)):
+        return (rev - cor - sga) / 1e3
+
+    # 2. Fallback: Use reported Operating Income
+    # If that is also missing, return 0
+    return df.get('Operating Income', 0) / 1e3
+
 def get_stock_metrics(ticker_symbol):
     """Pulls and calculates financial metrics for a single ticker."""
     try:
@@ -67,7 +85,7 @@ def get_stock_metrics(ticker_symbol):
             "debt": bs.iloc[:, 0]['Total Debt'] / 1e3,
             'revenue_yoy': ic.iloc[:, 0]['Total Revenue'] / ic.iloc[:, 4]['Total Revenue'] - 1,
             'revenue': ic_ltm['Total Revenue'] / 1e3,
-            'op income': ic_ltm['Total Revenue'] / 1e3 - ic_ltm['Cost Of Revenue'] / 1e3 - ic_ltm['Selling General And Administration'] / 1e3 ,
+            'op income': calculate_op_income_waterfall(ic_ltm),
             'EBITDA': ic_ltm['EBITDA'] / 1e3,
             'Net Income': ic_ltm['Net Income Continuous Operations'] / 1e3,
             'Adj. EBITDA': ic_ltm['Normalized EBITDA'] / 1e3,
@@ -90,7 +108,9 @@ def get_stock_metrics(ticker_symbol):
 
 # --- Execution ---
 # List of your dozen stocks
-ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
+#ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
+ticker_list = ["PLCE", 'CRI', 'GAP']
+
 
 all_results = []
 print(f"Fetching data for {len(ticker_list)} stocks...")

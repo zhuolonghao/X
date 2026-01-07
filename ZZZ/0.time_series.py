@@ -18,6 +18,23 @@ def safe_get(series, key, divisor=1):
     """Safely retrieves a value from a Series, returns 0 if missing."""
     return series.get(key, 0) / divisor
 
+def calculate_op_income_waterfall(df):
+    # 1. Attempt to get manual components
+    # Note: yfinance uses 'Selling General Administrative' (no 'And')
+    rev = df.get('Total Revenue')
+    cor = df.get('Cost Of Revenue')
+    sga = df.get('Selling General And Administration')
+
+    # Check if all manual components exist and are not NaN
+    manual_components = [rev, cor, sga]
+
+    if all(v is not None for v in manual_components) and not any(pd.isna(manual_components)):
+        return (rev - cor - sga) / 1e3
+
+    # 2. Fallback: Use reported Operating Income
+    # If that is also missing, return 0
+    return df.get('Operating Income', 0) / 1e3
+
 
 def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
     """
@@ -43,9 +60,7 @@ def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
 
         # P&L Metrics
         'Revenue': rev,
-        'Op Income': (safe_get(ic, 'Total Revenue') -
-                      safe_get(ic, 'Cost Of Revenue') -
-                      safe_get(ic, 'Selling General And Administration')) / 1e3,
+        'Op Income': calculate_op_income_waterfall(ic_ltm),
 
         'EBITDA': safe_get(ic, 'EBITDA', 1e3),
         'Net Income': safe_get(ic, 'Net Income Continuous Operations', 1e3),
@@ -131,7 +146,8 @@ def get_stock_time_series(ticker_symbol):
 
 # --- Execution ---
 #ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
-ticker_list = ["FLWS"]
+#ticker_list = ["FLWS"]
+ticker_list = ["PLCE", 'CRI', 'GAP']
 
 for symbol in ticker_list:
     df_time_series = get_stock_time_series(symbol)
