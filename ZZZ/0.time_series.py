@@ -60,7 +60,7 @@ def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
 
         # P&L Metrics
         'Revenue': rev,
-        'Op Income': calculate_op_income_waterfall(ic_ltm),
+        'Op Income': calculate_op_income_waterfall(ic),
 
         'EBITDA': safe_get(ic, 'EBITDA', 1e3),
         'Net Income': safe_get(ic, 'Net Income Continuous Operations', 1e3),
@@ -79,7 +79,11 @@ def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
 
         'CapEx': safe_get(cf, 'Capital Expenditure', 1e3),
         'OCF': safe_get(cf, 'Operating Cash Flow', 1e3),
-        "BQR's FCF": (safe_get(cf, 'Operating Cash Flow') + safe_get(cf, 'Capital Expenditure')) / 1e3
+        "BQR's FCF": (safe_get(cf, 'Operating Cash Flow') + safe_get(cf, 'Capital Expenditure')) / 1e3,
+        'COGS': safe_get(ic, 'Cost Of Revenue', 1),
+        'AR': (bs_avg['Accounts Receivable']),
+        'INV': (bs_avg['Inventory']),
+        'AP': (bs_avg['Accounts Payable'])
     }
     return metrics
 
@@ -125,7 +129,7 @@ def get_stock_time_series(ticker_symbol):
             col_ic = a_ic.iloc[:, i]
             col_cf = a_cf.iloc[:, i]
             col_bs = a_bs.iloc[:, i]
-            col_avg_bs = a_bs.iloc[:, i:i+2].mean(axis=1)
+            col_avg_bs = a_bs.iloc[:, i]
 
             # Extract Year and Date
             period_date = a_ic.columns[i]  # This is the Timestamp
@@ -145,9 +149,9 @@ def get_stock_time_series(ticker_symbol):
 
 
 # --- Execution ---
-#ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
+ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
 #ticker_list = ["FLWS"]
-ticker_list = ["PLCE", 'CRI', 'GAP']
+#ticker_list = ["PLCE", 'CRI', 'GAP']
 
 for symbol in ticker_list:
     df_time_series = get_stock_time_series(symbol)
