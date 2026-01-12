@@ -6,6 +6,7 @@ from functools import reduce
 import seaborn as sns
 import os
 folder = "C:\\Users\\longh\\Desktop\\X\\01_macro_economic\\PCE\\Z.economic_pulse_monthly"
+folder = "C:\\Users\\zlhte\\OneDrive\\Desktop\\X\\01_macro_economic\\PCE\\Z.economic_pulse_monthly"
 sns.set(style='ticks')
 from matplotlib.backends.backend_pdf import PdfPages
 

@@ -1,0 +1,2466 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20243.24.1010.1014                               -->
+<workbook original-version='18.1' source-build='2024.3.0 (20243.24.1010.1014)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='all (inflation_comp_v2)' inline='true' name='federated.1kytom50rkn0671gt1jrf1shww72' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='inflation_comp_v2' name='excel-direct.1sp3zmw122ug1t159bxmq1ysdfgr'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/zlhte/OneDrive/Desktop/X/01_macro_economic/CPI/inflation_comp_v2.xlsx' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <relation connection='excel-direct.1sp3zmw122ug1t159bxmq1ysdfgr' name='all' table='[all$]' type='table'>
+          <columns gridOrigin='A1:G10001:no:A1:G10001:0' header='yes' outcome='2'>
+            <column datatype='integer' name='Level' ordinal='0' />
+            <column datatype='string' name='Expenditure' ordinal='1' />
+            <column datatype='real' name='Importance' ordinal='2' />
+            <column datatype='real' name='CPI' ordinal='3' />
+            <column datatype='real' name='Contribution' ordinal='4' />
+            <column datatype='string' name='date' ordinal='5' />
+            <column datatype='string' name='Cleaned_Expenditure' ordinal='6' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[all]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>0</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:G10001:no:A1:G10001:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Level</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Level]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>Level</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Expenditure</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Expenditure]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>Expenditure</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Importance</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Importance]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>Importance</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CPI</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CPI]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>CPI</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Contribution</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Contribution]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>Contribution</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cleaned_Expenditure</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Cleaned_Expenditure]</local-name>
+            <parent-name>[all]</parent-name>
+            <remote-alias>Cleaned_Expenditure</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+            <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='left([date],4)' />
+      </column>
+      <column datatype='string' name='[Cleaned Expenditure (group)]' role='dimension' type='nominal'>
+        <calculation class='categorical-bin' column='[Cleaned_Expenditure]' new-bin='true'>
+          <bin default-name='false' value='&quot;(reference) Lodging away from home&quot;'>
+            <value>&quot;Lodging away from home&quot;</value>
+          </bin>
+          <bin default-name='true' value='&quot;Owners&apos; equivalent rent of residences, Rent of primary residence, Tenants&apos; and household insurance&quot;'>
+            <value>&quot;Owners&apos; equivalent rent of residences&quot;</value>
+            <value>&quot;Rent of primary residence&quot;</value>
+            <value>&quot;Tenants&apos; and household insurance&quot;</value>
+          </bin>
+        </calculation>
+      </column>
+      <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+      <column aggregation='Sum' datatype='integer' name='[Level]' role='dimension' type='ordinal' />
+      <column caption='all' datatype='table' name='[__tableau_internal_object_id__].[all_FBDCB4C96F0B42C5B047A683A0DD13E1]' role='measure' type='quantitative' />
+      <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+      <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/#TableauTemp_1xyun8i1mg2w961elore81tz87ey.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='01/08/2026 07:38:08 PM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Level</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Level]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Level</remote-alias>
+              <ordinal>0</ordinal>
+              <family>all</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Expenditure</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Expenditure]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Expenditure</remote-alias>
+              <ordinal>1</ordinal>
+              <family>all</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>492</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Importance</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Importance]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Importance</remote-alias>
+              <ordinal>2</ordinal>
+              <family>all</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3811</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>CPI</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[CPI]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>CPI</remote-alias>
+              <ordinal>3</ordinal>
+              <family>all</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>568</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Contribution</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Contribution]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Contribution</remote-alias>
+              <ordinal>4</ordinal>
+              <family>all</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>11161</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>date</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[date]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>date</remote-alias>
+              <ordinal>5</ordinal>
+              <family>all</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>106</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Cleaned_Expenditure</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Cleaned_Expenditure]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Cleaned_Expenditure</remote-alias>
+              <ordinal>6</ordinal>
+              <family>all</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>296</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <object-id>[all_FBDCB4C96F0B42C5B047A683A0DD13E1]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[Cleaned Expenditure (group)]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;(reference) Lodging away from home&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Food at home&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Medical equipment and supplies&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Car and truck rental&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Leased cars and trucks&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Owners&apos; equivalent rent of residences, Rent of primary residence, Tenants&apos; and household insurance&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Professional services&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Rent of primary residence&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Used cars and trucks&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Energy services&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Food&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Hospital and related services&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Motor vehicle parts and equipment&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Tenants&apos; and household insurance&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>&quot;Medical care services&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Household operations&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Personal care products&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+            </map>
+            <map to='#9d7660'>
+              <bucket>&quot;Transportation services&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;Other goods&quot;</bucket>
+            </map>
+            <map to='#d37295'>
+              <bucket>&quot;Other personal services&quot;</bucket>
+            </map>
+            <map to='#d4a6c8'>
+              <bucket>&quot;Recreation services&quot;</bucket>
+            </map>
+            <map to='#d4a6c8'>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Energy&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Health insurance&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Motor vehicle insurance&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Utility (piped) gas service&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;New vehicles&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Owners&apos; equivalent rent of residences&quot;</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>&quot;Alcoholic beverages away from home&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Electricity&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Food away from home&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Household furnishings and operations&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Medicinal drugs&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Motor vehicle maintenance and repair&quot;</bucket>
+            </map>
+            <map to='#fabfd2'>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;Personal care services&quot;</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>&quot;Apparel&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Cleaned_Expenditure:nk]' palette='tableau20_10_0' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Apparel&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Food at home&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Medical equipment and supplies&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Alcoholic beverages away from home&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Car and truck rental&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Leased cars and trucks&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Professional services&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Rent of primary residence&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Used cars and trucks&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Energy services&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Hospital and related services&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Motor vehicle parts and equipment&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Tenants&apos; and household insurance&quot;</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>&quot;Medical care services&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Household operations&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Personal care products&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;Electricity&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;New and used motor vehicles&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Transportation services&quot;</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;Other goods&quot;</bucket>
+            </map>
+            <map to='#d37295'>
+              <bucket>&quot;Other personal services&quot;</bucket>
+            </map>
+            <map to='#d4a6c8'>
+              <bucket>&quot;Recreation services&quot;</bucket>
+            </map>
+            <map to='#d4a6c8'>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Energy&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Health insurance&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Lodging away from home&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Motor vehicle insurance&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;New vehicles&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Owners&apos; equivalent rent of residences&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Recreation&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Food away from home&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Household furnishings and operations&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Medicinal drugs&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Motor vehicle maintenance and repair&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Utility (piped) gas service&quot;</bucket>
+            </map>
+            <map to='#fabfd2'>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;Personal care services&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;Public transportation&quot;</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>&quot;Food&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='Level' />
+        <field-sort-custom-order field='Expenditure' />
+        <field-sort-custom-order field='Importance' />
+        <field-sort-custom-order field='CPI' />
+        <field-sort-custom-order field='Contribution' />
+        <field-sort-custom-order field='date' />
+        <field-sort-custom-order field='Calculation_168885006558646272' />
+        <field-sort-custom-order field='Cleaned_Expenditure' />
+        <field-sort-custom-order field='Geometry (generated)' />
+        <field-sort-custom-order field='Latitude (generated)' />
+        <field-sort-custom-order field='Longitude (generated)' />
+        <field-sort-custom-order field=':Measure Names' />
+        <field-sort-custom-order field='Multiple Values' />
+      </field-sort-info>
+      <object-graph>
+        <objects>
+          <object caption='all' id='all_FBDCB4C96F0B42C5B047A683A0DD13E1'>
+            <properties context=''>
+              <relation connection='excel-direct.1sp3zmw122ug1t159bxmq1ysdfgr' name='all' table='[all$]' type='table'>
+                <columns gridOrigin='A1:G10001:no:A1:G10001:0' header='yes' outcome='2'>
+                  <column datatype='integer' name='Level' ordinal='0' />
+                  <column datatype='string' name='Expenditure' ordinal='1' />
+                  <column datatype='real' name='Importance' ordinal='2' />
+                  <column datatype='real' name='CPI' ordinal='3' />
+                  <column datatype='real' name='Contribution' ordinal='4' />
+                  <column datatype='string' name='date' ordinal='5' />
+                  <column datatype='string' name='Cleaned_Expenditure' ordinal='6' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='federated.1kytom50rkn0671gt1jrf1shww72'>
+      <datasources>
+        <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+      </datasources>
+      <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+        <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='left([date],4)' />
+        </column>
+        <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]'>
+        <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+          <groupfilter function='member' level='[none:Calculation_168885006558646272:nk]' member='&quot;2024&quot;' />
+          <groupfilter function='member' level='[none:Calculation_168885006558646272:nk]' member='&quot;2025&quot;' />
+        </groupfilter>
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Headline vs Core CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[Level]' role='dimension' type='ordinal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Level]' derivation='None' name='[none:Level:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;All items less food and energy&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]'>
+            <groupfilter function='member' level='[none:Level:ok]' member='1' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='width' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='68' />
+            <format attr='width' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]' value='68' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-mode' value='selection' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk])</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{024C7540-3286-4BC8-A475-4502203A18D1}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (2)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Food-Centric CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[Level]' role='dimension' type='ordinal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Level]' derivation='None' name='[none:Level:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;All items less food and energy&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food at home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food away from home&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;Food at home&quot;</bucket>
+              <bucket>&quot;Food away from home&quot;</bucket>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+              <bucket>&quot;Energy services&quot;</bucket>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+              <bucket>&quot;Apparel&quot;</bucket>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+              <bucket>&quot;Other goods&quot;</bucket>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Household operations&quot;</bucket>
+              <bucket>&quot;Medical care services&quot;</bucket>
+              <bucket>&quot;Transportation services&quot;</bucket>
+              <bucket>&quot;Recreation services&quot;</bucket>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+              <bucket>&quot;Other personal services&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]'>
+            <groupfilter from='1' function='range' level='[none:Level:ok]' to='4' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk])</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{2AEA7C50-6F3B-41FC-B6FA-F35361BDB680}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (3)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Housing-Centric CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column datatype='string' name='[Cleaned Expenditure (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[Cleaned_Expenditure]' new-bin='true'>
+                <bin default-name='false' value='&quot;(reference) Lodging away from home&quot;'>
+                  <value>&quot;Lodging away from home&quot;</value>
+                </bin>
+                <bin default-name='true' value='&quot;Owners&apos; equivalent rent of residences, Rent of primary residence, Tenants&apos; and household insurance&quot;'>
+                  <value>&quot;Owners&apos; equivalent rent of residences&quot;</value>
+                  <value>&quot;Rent of primary residence&quot;</value>
+                  <value>&quot;Tenants&apos; and household insurance&quot;</value>
+                </bin>
+              </calculation>
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[CPI]' derivation='Median' name='[med:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Lodging away from home&quot;</bucket>
+              <bucket>&quot;(reference) Lodging away from home&quot;</bucket>
+              <bucket>&quot;Household furnishings and operations&quot;</bucket>
+              <bucket>&quot;Utility (piped) gas service&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Owners&apos; equivalent rent of residences, Rent of primary residence, Tenants&apos; and household insurance&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Household furnishings and operations&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Lodging away from home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Owners&apos; equivalent rent of residences&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Rent of primary residence&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Tenants&apos; and household insurance&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Utility (piped) gas service&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Water and sewer and trash collection services&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[med:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[med:CPI:qk])</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{D1E95A59-62FF-44C3-B5E9-B0FAA940A0BA}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (4)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Energy-Centric CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[Level]' role='dimension' type='ordinal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Level]' derivation='None' name='[none:Level:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;All items less food and energy&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Electricity&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy commodities&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Utility (piped) gas service&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;Food at home&quot;</bucket>
+              <bucket>&quot;Food away from home&quot;</bucket>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+              <bucket>&quot;Energy services&quot;</bucket>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+              <bucket>&quot;Apparel&quot;</bucket>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+              <bucket>&quot;Other goods&quot;</bucket>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Household operations&quot;</bucket>
+              <bucket>&quot;Medical care services&quot;</bucket>
+              <bucket>&quot;Transportation services&quot;</bucket>
+              <bucket>&quot;Recreation services&quot;</bucket>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+              <bucket>&quot;Other personal services&quot;</bucket>
+              <bucket>&quot;Electricity&quot;</bucket>
+              <bucket>&quot;Utility (piped) gas service&quot;</bucket>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]'>
+            <groupfilter from='1' function='range' level='[none:Level:ok]' to='4' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk])</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{41A69A0B-7B42-4342-8FF3-2BC1CB318A76}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (5)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Auto-Centric CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy commodities&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Motor vehicle insurance&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Motor vehicle maintenance and repair&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Motor vehicle parts and equipment&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;New vehicles&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Used cars and trucks&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+              <bucket>&quot;Food at home&quot;</bucket>
+              <bucket>&quot;Food away from home&quot;</bucket>
+              <bucket>&quot;Energy services&quot;</bucket>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+              <bucket>&quot;Apparel&quot;</bucket>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+              <bucket>&quot;Other goods&quot;</bucket>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Household operations&quot;</bucket>
+              <bucket>&quot;Medical care services&quot;</bucket>
+              <bucket>&quot;Transportation services&quot;</bucket>
+              <bucket>&quot;Recreation services&quot;</bucket>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+              <bucket>&quot;Other personal services&quot;</bucket>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+              <bucket>&quot;Car and truck rental&quot;</bucket>
+              <bucket>&quot;Motor vehicle parts and equipment&quot;</bucket>
+              <bucket>&quot;Leased cars and trucks&quot;</bucket>
+              <bucket>&quot;Used cars and trucks&quot;</bucket>
+              <bucket>&quot;New vehicles&quot;</bucket>
+              <bucket>&quot;Motor vehicle maintenance and repair&quot;</bucket>
+              <bucket>&quot;Motor vehicle insurance&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk])</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{A7C52203-D961-4304-8F77-C4DE81CFA68F}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (7)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Medical-Centric CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Health insurance&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Hospital and related services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Medical equipment and supplies&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Medicinal drugs&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Professional services&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+              <bucket>&quot;Food at home&quot;</bucket>
+              <bucket>&quot;Food away from home&quot;</bucket>
+              <bucket>&quot;Energy services&quot;</bucket>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+              <bucket>&quot;Apparel&quot;</bucket>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+              <bucket>&quot;Other goods&quot;</bucket>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Household operations&quot;</bucket>
+              <bucket>&quot;Medical care services&quot;</bucket>
+              <bucket>&quot;Transportation services&quot;</bucket>
+              <bucket>&quot;Recreation services&quot;</bucket>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+              <bucket>&quot;Other personal services&quot;</bucket>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+              <bucket>&quot;Car and truck rental&quot;</bucket>
+              <bucket>&quot;Motor vehicle parts and equipment&quot;</bucket>
+              <bucket>&quot;Leased cars and trucks&quot;</bucket>
+              <bucket>&quot;Used cars and trucks&quot;</bucket>
+              <bucket>&quot;New vehicles&quot;</bucket>
+              <bucket>&quot;Motor vehicle maintenance and repair&quot;</bucket>
+              <bucket>&quot;Motor vehicle insurance&quot;</bucket>
+              <bucket>&quot;Medical equipment and supplies&quot;</bucket>
+              <bucket>&quot;Medicinal drugs&quot;</bucket>
+              <bucket>&quot;Health insurance&quot;</bucket>
+              <bucket>&quot;Professional services&quot;</bucket>
+              <bucket>&quot;Hospital and related services&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk])</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{E3DBF69D-247F-43A9-9346-5293FE0EB4D9}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (8)'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column datatype='real' name='[Importance]' role='measure' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[Level]' role='dimension' type='ordinal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Level]' derivation='None' name='[none:Level:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Importance]' derivation='Sum' name='[sum:Importance:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Alcoholic beverages&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Apparel&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Education and communication commodities&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Education and communication services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy commodities&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Energy services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food at home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food away from home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Household furnishings and supplies&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Household operations&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Medical care commodities&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Medical care services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Other goods&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Other personal services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Recreation commodities&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Recreation services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Rent of shelter&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Transportation commodities less motor fuel&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Transportation services&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Water and sewer and trash collection services&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+              <bucket>&quot;Food at home&quot;</bucket>
+              <bucket>&quot;Food away from home&quot;</bucket>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+              <bucket>&quot;Energy services&quot;</bucket>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+              <bucket>&quot;Apparel&quot;</bucket>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+              <bucket>&quot;Other goods&quot;</bucket>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Household operations&quot;</bucket>
+              <bucket>&quot;Medical care services&quot;</bucket>
+              <bucket>&quot;Transportation services&quot;</bucket>
+              <bucket>&quot;Recreation services&quot;</bucket>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+              <bucket>&quot;Other personal services&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Level:ok]' member='2' />
+              <groupfilter function='member' level='[none:Level:ok]' member='3' />
+              <groupfilter function='member' level='[none:Level:ok]' member='4' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Level:ok]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + ([federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]))</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{0CBE2AD4-DAC6-4C67-9BBD-81A41018ED60}' />
+    </worksheet>
+    <worksheet name='Sheet 1 (9)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Discretionary-Centric CPI</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+            <column datatype='real' name='[CPI]' role='measure' type='quantitative' />
+            <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='left([date],4)' />
+            </column>
+            <column caption='Cleaned Expenditure' datatype='string' name='[Cleaned_Expenditure]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Contribution]' role='measure' type='quantitative' />
+            <column datatype='real' name='[Importance]' role='measure' type='quantitative' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='Attribute' name='[attr:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column caption='Date' datatype='string' name='[date]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cleaned_Expenditure]' derivation='None' name='[none:Cleaned_Expenditure:nk]' pivot='key' type='nominal' />
+            <column-instance column='[date]' derivation='None' name='[none:date:nk]' pivot='key' type='nominal' />
+            <column-instance column='[CPI]' derivation='Sum' name='[sum:CPI:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Contribution]' derivation='Sum' name='[sum:Contribution:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Importance]' derivation='Sum' name='[sum:Importance:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Alcoholic beverages away from home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Apparel&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Food away from home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Household furnishings and operations&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Lodging away from home&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;New and used motor vehicles&quot;' />
+              <groupfilter function='member' level='[none:Cleaned_Expenditure:nk]' member='&quot;Recreation&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Energy&quot;</bucket>
+              <bucket>&quot;Food&quot;</bucket>
+              <bucket>&quot;All items less food and energy&quot;</bucket>
+              <bucket>&quot;Food at home&quot;</bucket>
+              <bucket>&quot;Energy services&quot;</bucket>
+              <bucket>&quot;Household furnishings and supplies&quot;</bucket>
+              <bucket>&quot;Apparel&quot;</bucket>
+              <bucket>&quot;Transportation commodities less motor fuel&quot;</bucket>
+              <bucket>&quot;Medical care commodities&quot;</bucket>
+              <bucket>&quot;Recreation commodities&quot;</bucket>
+              <bucket>&quot;Education and communication commodities&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages&quot;</bucket>
+              <bucket>&quot;Other goods&quot;</bucket>
+              <bucket>&quot;Rent of shelter&quot;</bucket>
+              <bucket>&quot;Water and sewer and trash collection services&quot;</bucket>
+              <bucket>&quot;Household operations&quot;</bucket>
+              <bucket>&quot;Medical care services&quot;</bucket>
+              <bucket>&quot;Education and communication services&quot;</bucket>
+              <bucket>&quot;Other personal services&quot;</bucket>
+              <bucket>&quot;Energy commodities&quot;</bucket>
+              <bucket>&quot;Car and truck rental&quot;</bucket>
+              <bucket>&quot;Motor vehicle parts and equipment&quot;</bucket>
+              <bucket>&quot;Leased cars and trucks&quot;</bucket>
+              <bucket>&quot;Used cars and trucks&quot;</bucket>
+              <bucket>&quot;New vehicles&quot;</bucket>
+              <bucket>&quot;Motor vehicle maintenance and repair&quot;</bucket>
+              <bucket>&quot;Motor vehicle insurance&quot;</bucket>
+              <bucket>&quot;Medical equipment and supplies&quot;</bucket>
+              <bucket>&quot;Medicinal drugs&quot;</bucket>
+              <bucket>&quot;Health insurance&quot;</bucket>
+              <bucket>&quot;Professional services&quot;</bucket>
+              <bucket>&quot;Hospital and related services&quot;</bucket>
+              <bucket>&quot;Household furnishings and operations&quot;</bucket>
+              <bucket>&quot;Lodging away from home&quot;</bucket>
+              <bucket>&quot;Food away from home&quot;</bucket>
+              <bucket>&quot;Alcoholic beverages away from home&quot;</bucket>
+              <bucket>&quot;Personal care products&quot;</bucket>
+              <bucket>&quot;Personal care services&quot;</bucket>
+              <bucket>&quot;Recreation services&quot;</bucket>
+              <bucket>&quot;Recreation&quot;</bucket>
+              <bucket>&quot;Transportation services&quot;</bucket>
+              <bucket>&quot;New and used motor vehicles&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]</column>
+            <column>[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' domain-expand='false' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]' field-type='quantitative' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='*0.00' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]' value='*0.0' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]' value='-90' />
+            <format attr='text-format' field='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' value='' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' />
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[attr:Cleaned_Expenditure:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.93353593349456787' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-transparency' value='231' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-orientation' value='-90' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-orientation' value='-90' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1kytom50rkn0671gt1jrf1shww72].[sum:Contribution:qk] + ([federated.1kytom50rkn0671gt1jrf1shww72].[sum:CPI:qk] + [federated.1kytom50rkn0671gt1jrf1shww72].[sum:Importance:qk]))</rows>
+        <cols>[federated.1kytom50rkn0671gt1jrf1shww72].[none:date:nk]</cols>
+      </table>
+      <simple-id uuid='{81388A8A-6BDA-4E3D-B38D-F39D485B0AD8}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Food_Engy_Core'>
+      <style />
+      <size sizing-mode='automatic' />
+      <datasources>
+        <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+      </datasources>
+      <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+        <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='left([date],4)' />
+        </column>
+        <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98832' id='18' param='horz' type-v2='layout-flow' w='99374' x='313' y='584'>
+            <zone h='98832' id='13' type-v2='layout-basic' w='99374' x='313' y='584'>
+              <zone h='93375' id='7' param='horz' type-v2='layout-flow' w='99374' x='313' y='6041'>
+                <zone h='93375' id='5' type-v2='layout-basic' w='99374' x='313' y='6041'>
+                  <zone h='93375' id='10' param='horz' type-v2='layout-flow' w='99374' x='313' y='6041'>
+                    <zone h='93375' id='3' name='Sheet 1' w='33341' x='313' y='6041'>
+                      <layout-cache minheight='431' type-h='scalable' type-w='cell' />
+                      <zone-style>
+                        <format attr='border-color' value='#000000' />
+                        <format attr='border-style' value='none' />
+                        <format attr='border-width' value='0' />
+                        <format attr='margin' value='4' />
+                      </zone-style>
+                    </zone>
+                    <zone h='93375' id='11' name='Sheet 1 (2)' w='32990' x='33654' y='6041'>
+                      <layout-cache type-h='fixed' type-w='cell' />
+                      <zone-style>
+                        <format attr='border-color' value='#000000' />
+                        <format attr='border-style' value='none' />
+                        <format attr='border-width' value='0' />
+                        <format attr='margin' value='4' />
+                      </zone-style>
+                    </zone>
+                    <zone h='93375' id='12' name='Sheet 1 (4)' w='32990' x='66644' y='6041'>
+                      <layout-cache type-h='fixed' type-w='cell' />
+                      <zone-style>
+                        <format attr='border-color' value='#000000' />
+                        <format attr='border-style' value='none' />
+                        <format attr='border-width' value='0' />
+                        <format attr='margin' value='4' />
+                      </zone-style>
+                    </zone>
+                  </zone>
+                </zone>
+              </zone>
+              <zone h='2719' id='8' mode='checkdropdown' name='Sheet 1' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type-v2='filter' w='99374' x='313' y='584'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='2738' id='9' leg-item-layout='horz' name='Sheet 1' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='33096' x='313' y='3303'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='2738' id='16' leg-item-layout='horz' name='Sheet 1 (2)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='33158' x='33409' y='3303'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='2738' id='19' leg-item-layout='horz' name='Sheet 1 (4)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='33120' x='66567' y='3303'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1150' minheight='1150' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='29' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98634' id='28' param='vert' type-v2='layout-flow' w='99304' x='348' y='683'>
+                <zone h='2716' id='8' mode='checkdropdown' name='Sheet 1' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type-v2='filter' w='99304' x='348' y='683'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='93185' id='3' is-fixed='true' name='Sheet 1' w='33048' x='348' y='6132'>
+                  <layout-cache cell-count-w='29' minheight='431' non-cell-size-w='69' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='2733' id='9' leg-item-layout='horz' name='Sheet 1' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='33077' x='348' y='3399'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='93185' id='11' is-fixed='true' name='Sheet 1 (2)' w='33091' x='33396' y='6132'>
+                  <layout-cache cell-count-w='29' non-cell-size-w='70' type-h='fixed' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='2733' id='16' leg-item-layout='horz' name='Sheet 1 (2)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='33133' x='33425' y='3399'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='93185' id='12' is-fixed='true' name='Sheet 1 (4)' w='33091' x='66487' y='6132'>
+                  <layout-cache cell-count-w='29' non-cell-size-w='70' type-h='fixed' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='2733' id='19' leg-item-layout='horz' name='Sheet 1 (4)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='33094' x='66558' y='3399'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{3A5C301D-27E4-4B99-81F1-9276B0BB4C90}' />
+    </dashboard>
+    <dashboard enable-sort-zone-taborder='true' name='Thematic'>
+      <style />
+      <size sizing-mode='automatic' />
+      <datasources>
+        <datasource caption='all (inflation_comp_v2)' name='federated.1kytom50rkn0671gt1jrf1shww72' />
+      </datasources>
+      <datasource-dependencies datasource='federated.1kytom50rkn0671gt1jrf1shww72'>
+        <column caption='YEAR' datatype='string' name='[Calculation_168885006558646272]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='left([date],4)' />
+        </column>
+        <column-instance column='[Calculation_168885006558646272]' derivation='None' name='[none:Calculation_168885006558646272:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='83182' id='7' param='horz' type-v2='layout-flow' w='99374' x='313' y='16234'>
+            <zone h='83182' id='3' param='horz' type-v2='layout-flow' w='99374' x='313' y='16234'>
+              <zone h='83182' id='11' param='vert' type-v2='layout-flow' w='24903' x='313' y='16234'>
+                <zone h='83182' id='5' name='Sheet 1 (9)' w='24903' x='313' y='16234'>
+                  <layout-cache minheight='404' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone h='83182' id='13' name='Sheet 1 (3)' w='24630' x='25216' y='16234'>
+                <layout-cache cell-count-w='22' minheight='311' non-cell-size-w='60' type-h='scalable' type-w='cell' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='83182' id='15' name='Sheet 1 (5)' w='24903' x='49846' y='16234'>
+                <layout-cache cell-count-w='22' minheight='331' non-cell-size-w='67' type-h='scalable' type-w='cell' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='83182' id='12' param='vert' type-v2='layout-flow' w='24903' x='74749' y='16234'>
+                <zone h='83182' id='10' name='Sheet 1 (7)' w='24903' x='74749' y='16234'>
+                  <layout-cache minheight='304' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='3199' id='16' param='horz' type-v2='layout-flow' w='99374' x='313' y='584'>
+            <zone h='3199' id='8' mode='checkdropdown' name='Sheet 1 (9)' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type-v2='filter' w='99374' x='313' y='584'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='12451' id='9' leg-item-layout='vert' name='Sheet 1 (9)' pane-specification-id='1' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='24835' x='313' y='3783'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='12451' id='17' name='Sheet 1 (3)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' show-title='false' type-v2='color' w='24722' x='25148' y='3783'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='12451' id='18' name='Sheet 1 (5)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='24728' x='49870' y='3783'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='12451' id='19' name='Sheet 1 (7)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='25089' x='74598' y='3783'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1500' minheight='1500' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='29' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98634' id='28' param='vert' type-v2='layout-flow' w='99304' x='348' y='683'>
+                <zone h='3195' id='8' mode='checkdropdown' name='Sheet 1 (9)' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type-v2='filter' w='99304' x='348' y='683'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='83013' id='5' is-fixed='true' name='Sheet 1 (9)' w='24856' x='348' y='16304'>
+                  <layout-cache cell-count-w='29' minheight='411' non-cell-size-w='74' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='12426' id='9' leg-item-layout='vert' name='Sheet 1 (9)' pane-specification-id='1' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='24820' x='348' y='3878'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='83013' id='13' is-fixed='true' name='Sheet 1 (3)' w='24681' x='25204' y='16304'>
+                  <layout-cache minheight='311' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='12426' id='17' name='Sheet 1 (3)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' show-title='false' type-v2='color' w='24706' x='25168' y='3878'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='83013' id='15' is-fixed='true' name='Sheet 1 (5)' w='24681' x='49885' y='16304'>
+                  <layout-cache minheight='331' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='12426' id='18' name='Sheet 1 (5)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='24709' x='49874' y='3878'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='83013' id='10' is-fixed='true' name='Sheet 1 (7)' w='25073' x='74566' y='16304'>
+                  <layout-cache cell-count-w='29' minheight='311' non-cell-size-w='79' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='12426' id='19' name='Sheet 1 (7)' pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' show-title='false' type-v2='color' w='25069' x='74583' y='3878'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{3C6E6B0D-3669-4803-B0C0-4A102641E0B9}' />
+    </dashboard>
+  </dashboards>
+  <windows pres-mode='true' source-height='37'>
+    <window class='dashboard' maximized='true' name='Food_Engy_Core'>
+      <viewpoints>
+        <viewpoint name='Sheet 1'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sheet 1 (2)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sheet 1 (4)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='11' />
+      <simple-id uuid='{83AA5101-882E-41E3-9353-D629AB50661A}' />
+    </window>
+    <window class='dashboard' name='Thematic'>
+      <viewpoints>
+        <viewpoint name='Sheet 1 (3)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sheet 1 (5)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sheet 1 (7)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sheet 1 (9)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='4' />
+      <simple-id uuid='{3EF98B83-8816-4DB3-8F48-CE42338DFE61}' />
+    </window>
+    <window class='worksheet' name='Sheet 1 (8)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{99BC4644-1B77-4C9F-B385-7D198A3428C5}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{D5483B80-6B3B-472A-98D7-BA1AFD62D21B}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1 (2)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{2D3DDDB6-8ECF-4B06-87BA-4AB19C4A006C}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1 (3)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='300'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[Cleaned Expenditure (group)]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{ABCC26C1-C7B2-48EE-85B5-1FD206CF5432}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1 (4)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{C363D1A0-FB8A-4341-B13F-EFC592D83124}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1 (5)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{93A27034-5CF8-43C6-835E-FF95F6909B5B}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1 (7)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{E82ED62E-D7A4-4479-BD41-C3F12A8FE854}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 1 (9)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Calculation_168885006558646272:nk]' type='filter' />
+            <card pane-specification-id='1' param='[federated.1kytom50rkn0671gt1jrf1shww72].[none:Cleaned_Expenditure:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{B45035DB-8F82-4914-AB32-AAD6F58481C6}' />
+    </window>
+  </windows>
+</workbook>
