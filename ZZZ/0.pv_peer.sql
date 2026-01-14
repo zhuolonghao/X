@@ -1,45 +1,30 @@
-SELECT *
-FROM [TARGET_TABLE]
-WHERE (
-    -- Home & Outdoor Segment
-    LOWER(legal_name) LIKE 'lifetime brands%'
-    OR LOWER(legal_name) LIKE 'breville%'
-    OR LOWER(legal_name) LIKE 'corning%'
-    OR LOWER(legal_name) LIKE 'progressive international%'
-    OR LOWER(legal_name) LIKE 'meyer%'
-    OR LOWER(legal_name) LIKE 'newell brands%'
-    OR LOWER(legal_name) LIKE 'simple human%'
-    OR LOWER(legal_name) LIKE 'yeti%'
-    OR LOWER(legal_name) LIKE 'bradshaw international%'
-    OR LOWER(legal_name) LIKE 'pmi worldwide%'
-    OR LOWER(legal_name) LIKE 'patagonia%'
-    OR LOWER(legal_name) LIKE 'gregory mountain%'
-    OR LOWER(legal_name) LIKE 'camelbak%'
-    OR LOWER(legal_name) LIKE 'the north face%'
-    OR LOWER(legal_name) LIKE 'deuter%'
-    OR LOWER(legal_name) LIKE 'cotopaxi%'
-    OR LOWER(legal_name) LIKE 'thule%'
-    OR LOWER(legal_name) LIKE 'trove brands%'
-    
-    -- Beauty & Wellness Segment
-    OR LOWER(legal_name) LIKE 'conair%'
-    OR LOWER(legal_name) LIKE 'spectrum brands%'
-    OR LOWER(legal_name) LIKE 'coty%'
-    OR LOWER(legal_name) LIKE 'dyson%'
-    OR LOWER(legal_name) LIKE 'l''oréal%' -- Escaped apostrophe
-    OR LOWER(legal_name) LIKE 'loreal%'   -- Non-apostrophe version
-    OR LOWER(legal_name) LIKE 'devacurl%'
-    OR LOWER(legal_name) LIKE 'sharkninja%'
-    OR LOWER(legal_name) LIKE 'exergen%'
-    OR LOWER(legal_name) LIKE 'omron healthcare%'
-    OR LOWER(legal_name) LIKE 'crane engineering%'
-    OR LOWER(legal_name) LIKE 'lasko products%'
-    OR LOWER(legal_name) LIKE 'vesync%'
-    OR LOWER(legal_name) LIKE 'the clorox company%'
-    OR LOWER(legal_name) LIKE 'zero technologies%'
-    OR LOWER(legal_name) LIKE 'vornado air circulation%'
-    OR LOWER(legal_name) LIKE 'unilever%'
-    OR LOWER(legal_name) LIKE 'wella operations%'
-    OR LOWER(legal_name) LIKE 'kiss usa%'
-    OR LOWER(legal_name) LIKE 'guardian technologies%'
-);
+/* Teradata SQL SELECT statement for fuzzy matching company names.
+Logic:
+1. Normalization to lowercase.
+2. Stripping of parentheticals and "Public" suffixes.
+3. Use of LIKE '[clean_name]%' for prefix fuzzy matching.
+*/
+
+SELECT
+    cust_id,
+    cust_nm,
+    segment_nm
+FROM
+    Customer_Table
+WHERE
+    --- Industrial & Commercial
+    LOWER(cust_nm) LIKE 'texas instruments%'
+    OR LOWER(cust_nm) LIKE 'nxp semiconductors%'
+    OR LOWER(cust_nm) LIKE 'stmicroelectronics%'
+    OR LOWER(cust_nm) LIKE 'infineon technologies%'
+    OR LOWER(cust_nm) LIKE 'renesas electronics%'
+    OR LOWER(cust_nm) LIKE 'microchip technology%'
+    OR LOWER(cust_nm) LIKE 'broadcom%'
+    OR LOWER(cust_nm) LIKE 'qualcomm%'
+   --- Home & Life
+    OR LOWER(cust_nm) LIKE 'nordic semiconductor%'
+    OR LOWER(cust_nm) LIKE 'espressif systems%'
+    OR LOWER(cust_nm) LIKE 'telink semiconductor%'
+    OR LOWER(cust_nm) LIKE 'synaptics%'
+    OR LOWER(cust_nm) LIKE 'mediatek%'
+    OR LOWER(cust_nm) LIKE 'nxp / stmicro / ti%';
