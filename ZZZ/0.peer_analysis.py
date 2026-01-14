@@ -109,8 +109,8 @@ def get_stock_metrics(ticker_symbol):
 # --- Execution ---
 # List of your dozen stocks
 #ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
-ticker_list = ["PLCE", 'CRI', 'GAP']
-
+#ticker_list = ["PLCE", 'CRI', 'GAP']
+ticker_list = ["SLAB", 'STM', 'TXN', 'NXPI', 'MCHP', 'AVGO', 'QCOM', 'SYNA']  # first five
 
 all_results = []
 print(f"Fetching data for {len(ticker_list)} stocks...")
