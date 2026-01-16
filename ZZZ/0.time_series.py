@@ -1,6 +1,6 @@
 import pandas as pd
 import yfinance as yf
-
+pd.set_option('display.max_columns', None)
 
 # --- Helper Functions ---
 def format_numbers(value):
@@ -37,7 +37,7 @@ def calculate_op_income_waterfall(df):
 
 # --- Mapping Functions (15-75 Scoring) ---
 def map_to_op_lev(v):
-    if v is None or pd.isna(v): return 999
+    if v is None or pd.isna(v): return 75
     thresholds = [(0.5, 15), (1.0, 25), (1.75, 35), (2.5, 42), (3.25, 45),
                   (3.75, 48), (4.25, 52), (4.75, 55), (5.25, 58), (6.25, 65)]
     for limit, score in thresholds:
@@ -45,7 +45,7 @@ def map_to_op_lev(v):
     return 75
 
 def map_to_icr(v):
-    if v is None or pd.isna(v) or v == 999: return 999
+    if v is None or pd.isna(v) or v == 999: return 15
     thresholds = [(30, 15), (15, 25), (12, 35), (9.75, 42), (7.75, 45),
                   (5, 48), (4.5, 52), (4, 55), (2.5, 58), (1.5, 65)]
     for limit, score in thresholds:
@@ -53,7 +53,7 @@ def map_to_icr(v):
     return 75
 
 def map_to_ni(v):
-    if v is None or pd.isna(v): return 999
+    if v is None or pd.isna(v): return 75
     thresholds = [(4000, 15), (1000, 25), (200, 35), (75, 42), (50, 45),
                   (25, 48), (15, 52), (5, 55), (0, 58), (-20, 65)]
     for limit, score in thresholds:
@@ -61,7 +61,7 @@ def map_to_ni(v):
     return 75
 
 def map_to_fcf(v):
-    if v is None or pd.isna(v) or v == 999: return 999
+    if v is None or pd.isna(v) or v == 999: return 15
     thresholds = [(50, 15), (40, 25), (30, 35), (23, 42), (20, 45),
                   (17, 48), (15, 52), (12, 55), (7, 58), (5.5, 65)]
     for limit, score in thresholds:
@@ -92,13 +92,17 @@ def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
                 + safe_get(ic, 'Net Interest Income'))
     fcf_debt_pct = round(100 * fcf_val / debt_val, 2) if debt_val > 0 else 999
 
+    dso = 365 * bs_avg['Accounts Receivable'] / ic['Total Revenue']
+    dio = 365 * bs_avg['Inventory'] / ic['Cost Of Revenue']
+    dpo = 365 * bs_avg['Accounts Payable'] / ic['Cost Of Revenue']
+
     metrics = {
         'Period': label,
         'Statement Date': stmt_date,  # <--- New Row Added Here
 
-        'DSO': format_numbers(365 * bs_avg['Accounts Receivable'] / ic['Total Revenue']),
-        'DIO': format_numbers(365 * bs_avg['Inventory'] / ic['Cost Of Revenue']),
-        'DPO': format_numbers(365 * bs_avg['Accounts Payable'] / ic['Cost Of Revenue']),
+        'DSO': format_numbers(dso),
+        'DIO': format_numbers(dio),
+        'DPO': format_numbers(dpo),
 
         # Balance Sheet Snapshots (End of Period)
         "Cash": safe_get(bs, 'Cash And Cash Equivalents', 1e3),
@@ -141,7 +145,9 @@ def calculate_period_metrics(ic, cf, bs, bs_avg, label, date_obj):
         'Score: ICR': map_to_icr(icr),
         'Score: Net Income': map_to_ni(ni_extra/1e3),
         'Score: FCF/Debt': map_to_fcf(fcf_debt_pct),
-        'BQR': map_to_op_lev(debt_ebitda)*0.35 + map_to_icr(icr)*0.15 + map_to_ni(ni_extra/1e3)*0.25 + map_to_fcf(fcf_debt_pct)*0.25
+        'BQR': map_to_op_lev(debt_ebitda)*0.35 + map_to_icr(icr)*0.15 + map_to_ni(ni_extra/1e3)*0.25 + map_to_fcf(fcf_debt_pct)*0.25,
+        'CCC': format_numbers(dso + dio - dpo),
+        'OCF-CAPEX': format_numbers((safe_get(cf, 'Operating Cash Flow') + safe_get(cf, 'Capital Expenditure'))),
     }
     return metrics
 
@@ -207,11 +213,10 @@ def get_stock_time_series(ticker_symbol):
 
 
 # --- Execution ---
-#ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
+ticker_list = ["HELE", 'YETI', 'LCUT', 'NWL', 'SPB']
 #ticker_list = ["FLWS"]
 #ticker_list = ["PLCE", 'CRI', 'GAP']
 #ticker_list = ["SLAB", 'STM', 'TXN', 'NXPI', 'MCHP', 'AVGO', 'QCOM', 'SYNA']  # first five
-ticker_list = ["HELE", 'YETI', 'NWL', 'SPB']
 
 for symbol in ticker_list:
     df_time_series = get_stock_time_series(symbol)
