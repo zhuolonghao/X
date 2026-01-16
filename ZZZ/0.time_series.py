@@ -217,4 +217,4 @@ for symbol in ticker_list:
     df_time_series = get_stock_time_series(symbol)
     print(f"\n Exporting Time Series for {symbol}")
     print(df_time_series.applymap(format_numbers))
-    df_time_series.reset_index().to_csv(f"{symbol}.csv", index=False)
+    df_time_series.reset_index().to_csv(f"{symbol}_{df_time_series.iloc[0][0]}.csv", index=False)

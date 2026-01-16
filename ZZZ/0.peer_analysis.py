@@ -203,11 +203,11 @@ for symbol in ticker_list:
                       + map_to_icr(metrics['Adj Ebitda / Interest Expense']) * 0.15
                       + map_to_ni(metrics['Net Profit before extraordinary']) * 0.25
                       + map_to_fcf(metrics['(NCO-CAPEX) / Total Debt (%)']) * 0.25)
-    metrics['Net Profit before extraordinary'] = "{:.f}M".format(metrics['Net Profit before extraordinary']/1e3)
+    metrics['Net Profit before extraordinary'] = "{:.1f}M".format(metrics['Net Profit before extraordinary']/1e3)
     all_results.append(metrics)
 # Create a clean Table
 df = pd.DataFrame(all_results)
 print("\n--- Summary Table ---")
 print(df.to_string(index=False))
 # Optional: Export to CSV
-df.T.reset_index().to_csv("peer_analysis.csv", index=False)
+df.T.reset_index().to_csv(f"peer_analysis_{ticker_list[0]}.csv", index=False)
