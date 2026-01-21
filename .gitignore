@@ -1,2 +1,3 @@
 # Ignore Google Drive temporary sync folders
 .tmp.driveupload/
+financial_tools.py
