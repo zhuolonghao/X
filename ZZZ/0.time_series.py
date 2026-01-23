@@ -4,6 +4,7 @@ import numpy as np
 import time
 
 pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 pd.set_option('display.expand_frame_repr', False)
 # --- Configuration ---
 
@@ -22,6 +23,8 @@ for symbol in TICKER_LIST:
 
     # Fetch Data
     inc = client1.get_data('income-statement', symbol)
+    # inc = client1.get_data('income-statement-as-reported', symbol)
+    # df = client2.get_data('INCOME_STATEMENT', symbol)
     bs  = client1.get_data('balance-sheet-statement', symbol)
     cf  = client1.get_data('cash-flow-statement', symbol)
     ev = client1.get_data('enterprise-values', symbol)
