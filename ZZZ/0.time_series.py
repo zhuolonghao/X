@@ -10,6 +10,7 @@ pd.set_option('display.expand_frame_repr', False)
 
 API_KEY = "PTIKPYJ08KJ0X8T5"
 TICKER_LIST = ['HELE', 'NWL', 'LCUT', 'SPB', 'YETI']
+TICKER_LIST = ['JELD', 'BLDR', 'OC', 'FBIN']
 
 # --- Instantiate the Classes ---
 client2 = AlphaVantageClient(API_KEY)
@@ -30,15 +31,19 @@ for symbol in TICKER_LIST:
     ev = client1.get_data('enterprise-values', symbol)
     #price = client1.get_data('historical-price-eod', symbol)
 
-    rev_bus_seg = client1.get_data('revenue-product-segmentation', symbol)
-    rev_bus_seg = pd.DataFrame(rev_bus_seg)
-    rev_bus_seg = rev_bus_seg.apply(analyzer.process_segments, axis=1)
-    # rev_geo_seg = client1.get_data('revenue-geographic-segmentation', symbol)
 
+    rev_bus_seg = client1.get_data('revenue-product-segmentation', symbol)
+    rev_geo_seg = client1.get_data('revenue-geographic-segmentation', symbol)
+    if rev_bus_seg:
+        rev_seg = pd.DataFrame(rev_bus_seg)
+        rev_seg = rev_seg.apply(analyzer.process_segments, axis=1)
+    else:
+        rev_seg = pd.DataFrame(rev_geo_seg)
+        rev_seg = rev_seg.apply(analyzer.process_segments, axis=1)
 
     # Process
     if inc and bs and cf and ev:
-        df_merged = analyzer.build_merged_dataframe(inc, bs, cf, ev, rev_bus_seg)
+        df_merged = analyzer.build_merged_dataframe(inc, bs, cf, ev, rev_seg)
         output = analyzer.process_ltm_data(df_merged)
         output = analyzer.add_category(output)
 
