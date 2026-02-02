@@ -11,6 +11,7 @@ pd.set_option('display.expand_frame_repr', False)
 API_KEY = "PTIKPYJ08KJ0X8T5"
 TICKER_LIST = ['HELE', 'NWL', 'LCUT', 'SPB', 'YETI']
 TICKER_LIST = ['JELD', 'BLDR', 'OC', 'FBIN']
+TICKER_LIST = ['LITE', 'COHR', 'CIEN', 'MRVL' 'MTSI', 'MKSI', 'IPGP']
 
 # --- Instantiate the Classes ---
 client2 = AlphaVantageClient(API_KEY)
