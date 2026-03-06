@@ -1,0 +1,50 @@
+Category,Metric,MEI
+Header,Fiscal Period,2026-Q3
+Header,Statement Date,2026-01-31
+Header,Filing Date,2026-03-05
+Revenue & Margin,Segment-1,Industrial
+Revenue & Margin,Segment-1 %,4566.4%
+Revenue & Margin,Segment-2,Automotive
+Revenue & Margin,Segment-2 %,4524.8%
+Revenue & Margin,Segment-3,Corporate And Intersegment Elimination
+Revenue & Margin,Segment-3 %,460.0%
+Revenue & Margin,Others,Interface
+Revenue & Margin,Others %,448.8%
+Revenue & Margin,Revenue Total,978200000
+Revenue & Margin,Rev-CoGS / Sale (%),15.293396033530977
+Revenue & Margin,Rev-CoGS-SG&A / Rev (%),-0.25557145777959517
+Revenue & Margin,Op. Income / Rev (%),-2.6272745859742384
+Revenue & Margin,Net Profit / Rev (%),-6.583520752402372
+EBITDA,Net Income,-64400000
+EBITDA,D & A,60500000
+EBITDA,Net Int Inc,-17800000
+EBITDA,Tax Provision,10600000
+EBITDA,EBITDA,24500000
+EBITDA,Stock-Based Comp,7800000
+EBITDA,Others Adj.,TBD
+EBITDA,Adj. EBITDA,TBD
+EBITDA,Covenant EBITDA,TBD
+Capital Structure,Stock Price,7.99
+Capital Structure,O/S Shares,35472733
+Capital Structure,Market Capitalization,283427136
+Capital Structure,Cash,133699999
+Capital Structure,Debt,364100000
+Capital Structure,Enterprise Value,513827137
+Capital Structure,netCommonStockIssuance,0
+Capital Structure,netDebtIssuance,0
+Liquidity & Cash Flow,DSO,85.2705223880597
+Liquidity & Cash Flow,DIO,86.44852763697804
+Liquidity & Cash Flow,DPO,56.2631245474294
+Liquidity & Cash Flow,CCC,115.45592547760835
+Liquidity & Cash Flow,OCF,68500000
+Liquidity & Cash Flow,CapEx,-25700000
+Liquidity & Cash Flow,FCF,42799999
+BQR,Total Debt / Adj Ebitda,14.861224489795918
+BQR,Adj Ebitda / Interest Expense,1.3764044943820224
+BQR,Net Income before extraordinary,-64400000
+BQR,(NCO-CAPEX) / Total Debt (%),11.755012084592146
+BQR,Score: Operating Leverage,75
+BQR,Score: ICR,75
+BQR,Score: Net Income,75
+BQR,Score: FCF/Debt,58
+BQR,BQR,70.75
