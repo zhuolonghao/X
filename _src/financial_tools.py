@@ -3,6 +3,7 @@ import requests
 import time
 import os
 import ast
+from datetime import datetime, timedelta
 from pandas.tseries.offsets import MonthEnd
 
 class FMPClient:
@@ -16,12 +17,21 @@ class FMPClient:
 
     def get_data(self, endpoint, symbol):
         """
-        Fetches data from Alpha Vantage with built-in error handling.
+        Fetches data with built-in error handling.
         """
+        # Calculate date range for past 6 months
+        to_date = datetime.now().strftime('%Y-%m-%d')
+        from_date = (datetime.now() - timedelta(days=365*3)).strftime('%Y-%m-%d')
+        from_date_1y = (datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')
+        
         if endpoint in ('revenue-product-segmentation', 'revenue-geographic-segmentation'):
             url = f"{self.base_url}/{endpoint}?symbol={symbol}&apikey={self.api_key}"
         elif endpoint in ('historical-price-eod'):
             url = f"{self.base_url}/{endpoint}/full?symbol={symbol}&apikey={self.api_key}"
+        elif endpoint in ('news'):
+            url = f"{self.base_url}/{endpoint}/stock?symbols={symbol}&from={from_date_1y}&to={to_date}&page=0&limit=100&apikey={self.api_key}"
+        elif endpoint in ('sec-filings-search'):
+            url = f"{self.base_url}/{endpoint}/symbol?symbol={symbol}&from={from_date}&to={to_date}&page=3&limit=300&apikey={self.api_key}"
         else:
             url = f"{self.base_url}/{endpoint}?symbol={symbol}&period=quarter&limit=20&apikey={self.api_key}"
         try:
@@ -115,7 +125,7 @@ class FinancialAnalyzer:
             return pd.Series()
 
         # --- Step B: Calculation Logic ---
-        total_rev = sum(value for value in d.values() if isinstance(value, (int, float)))
+        total_rev = sum(value for k, value in d.items() if isinstance(value, (int, float)))
         # Sort segments by revenue
         sorted_segs = sorted(d.items(), key=lambda x: safe_float(x[1]), reverse=True)
         # Initialize record with base columns
@@ -132,7 +142,7 @@ class FinancialAnalyzer:
             if i <= len(top_3):
                 name, val = top_3[i - 1]
                 res[f'Segment-{i} Name'] = name
-                res[f'Segment-{i} %'] = f"{self.safe_div(val, total_rev) * 100:.1%}"
+                res[f'Segment-{i} %'] = f"{self.safe_div(val, total_rev):.1%}"
             else:
                 res[f'Segment-{i} Name'] = '-'
                 res[f'Segment-{i} %'] = "-"
@@ -143,7 +153,7 @@ class FinancialAnalyzer:
             other_rev = sum(v for k, v in others if isinstance(v, (int, float)))
             other_names = ", ".join([k for k, v in others])
             res['Others Name'] = other_names
-            res['Others %'] = f"{self.safe_div(other_rev, total_rev) * 100:.1%}"
+            res['Others %'] = f"{self.safe_div(other_rev, total_rev):.1%}"
         else:
             res['Others Name'] = '-'
             res['Others %'] = "-"
@@ -169,7 +179,7 @@ class FinancialAnalyzer:
         df = df.sort_values('fiscalDateEnding', ascending=True)
         df = df.set_index(current_id_vars)
         # Ensure all columns are numeric where possible
-        df = df.apply(pd.to_numeric, errors='ignore')
+        df = df.apply(pd.to_numeric, errors='coerce')
         available_vars = [v for v in vars_to_keep if v in df.columns]
         return df[available_vars]
 

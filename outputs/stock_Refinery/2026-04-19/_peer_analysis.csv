@@ -1,7 +1,7 @@
 Category,Metric,DK,MPC,PBF
-Header,Fiscal Period,2025-Q4,2025-Q4,2025-Q4
+Header,Fiscal Period,2025-0.0,2025-0.0,2025-0.0
 Header,Statement Date,2025-12-31,2025-12-31,2025-12-31
-Header,Filing Date,2026-02-27,2026-02-26,2026-02-12
+Header,Filing Date,0.0,0.0,0.0
 Revenue & Margin,Segment-1,Refining,Refining And Marketing,Prior to elimination
 Revenue & Margin,Segment-1 %,91.2%,93.6%,50.0%
 Revenue & Margin,Segment-2,Logistics,Midstream,Refining Group

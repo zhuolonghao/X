@@ -10,6 +10,7 @@ from datetime import date
 
 
 pd.set_option('display.max_columns', None)
+pd.set_option('display.max_colwidth', None)
 pd.set_option('display.max_rows', None)
 pd.set_option('display.expand_frame_repr', False)
 # --- Configuration ---
@@ -32,6 +33,10 @@ analyzer = FinancialAnalyzer()
 # --- Run the Logic ---
 all_tickers_data = []
 all_tickers_price = []
+
+all_tickers_news = {}
+all_tickers_sec_filings = {}
+
 for symbol in np.unique(TICKER_LIST[1]):
     print(f"\n--- Processing {symbol} ---")
 
@@ -42,8 +47,12 @@ for symbol in np.unique(TICKER_LIST[1]):
     bs  = client1.get_data('balance-sheet-statement', symbol)
     cf  = client1.get_data('cash-flow-statement', symbol)
     ev = client1.get_data('enterprise-values', symbol)
+    news = client1.get_data('news', symbol)
+    sec_filings = client1.get_data('sec-filings-search', symbol)
     price = pd.DataFrame(client1.get_data('historical-price-eod', symbol))
     all_tickers_price.append(price)
+    all_tickers_news[symbol] = news
+    all_tickers_sec_filings[symbol] = sec_filings
 
     # 1. Fetch data
     rev_bus_seg = client1.get_data('revenue-product-segmentation', symbol)
@@ -67,7 +76,7 @@ for symbol in np.unique(TICKER_LIST[1]):
         output = analyzer.add_category(output)
 
         if not output.empty:
-            print(output.applymap(analyzer.format_numbers).iloc[:, :5])
+            print(output.map(analyzer.format_numbers).iloc[:, :5])
             file_path = os.path.join(output_dir, f"{symbol}_{output.iloc[2, 0]}.csv")
             output.to_csv(file_path, index=True)
             print(f"Saved {file_path}")
@@ -89,11 +98,31 @@ if all_tickers_data:
     file_name = os.path.join(output_dir, "_peer_analysis.csv")
     final_df.reset_index().to_csv(file_name, index=False)
     print(f"\nSuccess! Combined dataset saved to {file_name}")
-    print(final_df.applymap(analyzer.format_numbers).iloc[:,:5])
+    print(final_df.map(analyzer.format_numbers).iloc[:,:5])
     # Export to Excel
-    file_name = price_file = os.path.join(output_dir, "_price.xlsx")
-    price_df.to_excel(file_name, index=False)
-    print(f"\nSuccess! daily price dataset saved to {file_name}")
+    price_file = os.path.join(output_dir, "_price.xlsx")
+    price_df.to_excel(price_file, index=False)
+    # Export to Excel
+    price_file = os.path.join(output_dir, "_price.xlsx")
+    price_df.to_excel(price_file, index=False)
+    print(f"\nSuccess! daily price dataset saved to {price_file}")
+    # Export to Excel
+    news_file = os.path.join("outputs", TICKER_LIST[0], "_news.xlsx")
+    writer_kwargs = {'engine': 'openpyxl', 'mode': 'w'}
+    if os.path.exists(news_file):
+        writer_kwargs['mode'] = 'a'
+        writer_kwargs['if_sheet_exists'] = 'replace'
+    with pd.ExcelWriter(news_file, **writer_kwargs)as writer:   
+        for k, v in all_tickers_news.items():
+            pd.DataFrame(v).to_excel(writer, sheet_name=k, index=False)
+    print(f"\nSuccess! news dataset saved to {news_file}")
+
+    sec_filings_file = os.path.join("outputs", TICKER_LIST[0], "_sec_filings.xlsx")
+    with pd.ExcelWriter(sec_filings_file, **writer_kwargs) as writer:   
+        for k, v in all_tickers_sec_filings.items():
+            pd.DataFrame(v).to_excel(writer, sheet_name=k, index=False)       
+    print(f"\nSuccess! SEC filings dataset saved to {sec_filings_file}")
+    
 else:
     print("\nNo data was collected to export.")
 
@@ -109,4 +138,4 @@ def git_push(message, folder_path):
         print("Successfully pushed to Git!")
     except subprocess.CalledProcessError as e:
         print(f"Error during Git operations: {e}")
-git_push(TICKER_LIST[0], output_dir)
+#git_push(TICKER_LIST[0], output_dir)

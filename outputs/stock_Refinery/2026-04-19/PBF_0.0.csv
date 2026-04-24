@@ -1,7 +1,7 @@
 Category,Metric,LTM (Current),LTM (-1Q),LTM (-2Q),LTM (-3Q),LTM (-1 Years),LTM (-5Q),LTM (-6Q),LTM (-7Q),LTM (-2 Years),LTM (-9Q),LTM (-10Q),LTM (-11Q),LTM (-3 Years),LTM (-13Q),LTM (-14Q),LTM (-15Q),LTM (-4 Years)
-Header,Fiscal Period,2025-Q4,2025-Q3,2025-Q2,2025-Q1,2024-Q4,2024-Q3,2024-Q2,2024-Q1,2023-Q4,2023-Q3,2023-Q2,2023-Q1,2022-Q4,2022-Q3,2022-Q2,2022-Q1,2021-Q4
+Header,Fiscal Period,2025-0.0,2025-0.0,2025-0.0,2025-0.0,2024-0.0,2024-0.0,2024-0.0,2024-0.0,2023-0.0,2023-0.0,2023-0.0,2023-0.0,2022-0.0,2022-0.0,2022-0.0,2022-0.0,2021-0.0
 Header,Statement Date,2025-12-31,2025-09-30,2025-06-30,2025-03-31,2024-12-31,2024-09-30,2024-06-30,2024-03-31,2023-12-31,2023-09-30,2023-06-30,2023-03-31,2022-12-31,2022-09-30,2022-06-30,2022-03-31,2021-12-31
-Header,Filing Date,2026-02-12,2025-10-30,2025-07-31,2025-05-01,2025-02-13,2024-10-31,2024-08-01,2024-05-02,2024-02-15,2023-11-02,2023-08-03,2023-05-05,2023-02-16,2022-10-27,2022-07-28,2022-04-28,2022-02-17
+Header,Filing Date,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 Revenue & Margin,Segment-1,Prior to elimination,-,-,-,Prior to elimination,-,-,-,Prior to elimination,-,-,-,Refining Group,-,-,-,Refining Group
 Revenue & Margin,Segment-1 %,50.0%,-,-,-,50.0%,-,-,-,50.0%,-,-,-,99.2%,-,-,-,98.7%
 Revenue & Margin,Segment-2,Refining Group,-,-,-,Refining Group,-,-,-,Refining Group,-,-,-,Logistics Group,-,-,-,Logistics Group
