@@ -16,7 +16,7 @@ pd.set_option('display.expand_frame_repr', False)
 # --- Configuration ---
 
 TICKER_LIST = ['stock_Refinery',
-               ["MPC", "DK", 'PBF']
+               ["DK", "PBF"]
 ]
 
 # --- Setup Output Directory ---
@@ -94,15 +94,11 @@ if all_tickers_data:
     final_df = pd.concat(all_tickers_data, axis=1)
     price_df = pd.concat(all_tickers_price, axis=0, ignore_index=False)
 
-    # Export to Excel
-    file_name = os.path.join(output_dir, "_peer_analysis.csv")
-    final_df.reset_index().to_csv(file_name, index=False)
-    print(f"\nSuccess! Combined dataset saved to {file_name}")
-    print(final_df.map(analyzer.format_numbers).iloc[:,:5])
-    # Export to Excel
-    price_file = os.path.join(output_dir, "_price.xlsx")
-    price_df.to_excel(price_file, index=False)
-    # Export to Excel
+    # Export to CSV and Excel in the expected peer-analysis layout
+    csv_file = os.path.join(output_dir, "_peer_analysis.csv")
+    final_df.to_csv(csv_file, index=True)
+    print(f"\nSuccess! Combined dataset saved to {csv_file}")
+    # Export daily price history
     price_file = os.path.join(output_dir, "_price.xlsx")
     price_df.to_excel(price_file, index=False)
     print(f"\nSuccess! daily price dataset saved to {price_file}")

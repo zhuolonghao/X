@@ -77,21 +77,28 @@ class FinancialAnalyzer:
                     'Segment-2': 'Revenue & Margin', 'Segment-2 %': 'Revenue & Margin',
                     'Segment-3': 'Revenue & Margin', 'Segment-3 %': 'Revenue & Margin',
                     'Others': 'Revenue & Margin', 'Others %': 'Revenue & Margin',
-                    'Revenue Total': 'Revenue & Margin', 'Rev-CoGS / Sale (%)': 'Revenue & Margin',
-                    'Rev-CoGS-SG&A / Rev (%)': 'Revenue & Margin', 'Op. Income / Rev (%)': 'Revenue & Margin',
-                    'Net Profit / Rev (%)': 'Revenue & Margin',
-                    'Net Income': 'EBITDA', 'D & A': 'EBITDA', 'Net Int Inc': 'EBITDA',
-                    'Tax Provision': 'EBITDA', 'EBITDA': 'EBITDA', 'Stock-Based Comp': 'EBITDA',
+                    
+                    'Revenue Total ($k)': 'Revenue & Margin', 
+                    'Rev-CoGS / Rev': 'Revenue & Margin',
+                    'Rev-CoGS-SG&A / Rev': 'Revenue & Margin', 
+                    'Rev-CoGs-SG&A-Other.OpEx / Rev': 'Revenue & Margin',
+                    'Net Income / Rev': 'Revenue & Margin',
+
+                    'Net Income ($k)': 'EBITDA', 'D & A ($k)': 'EBITDA', 'Net Interest Expense ($k)': 'EBITDA',
+                    'Tax Provision ($k)': 'EBITDA', 'EBITDA ($k)': 'EBITDA', 'Stock-Based Comp ($k)': 'EBITDA',
                     'Others Adj.': 'EBITDA', 'Adj. EBITDA': 'EBITDA', 'Covenant EBITDA': 'EBITDA',
+
                     'Stock Price': 'Capital Structure', 'O/S Shares': 'Capital Structure',
-                    'Market Capitalization': 'Capital Structure', 'Cash': 'Capital Structure',
-                    'Debt': 'Capital Structure', 'Enterprise Value': 'Capital Structure',
-                    'netCommonStockIssuance': 'Capital Structure', 'netDebtIssuance': 'Capital Structure',
+                    'Market Capitalization ($k)': 'Capital Structure', 'Cash ($k)': 'Capital Structure',
+                    'Debt ($k)': 'Capital Structure', 'Enterprise Value ($k)': 'Capital Structure',
+                    'netCommonStockIssuance ($k)': 'Capital Structure', 'netDebtIssuance ($k)': 'Capital Structure',
+                    
                     'DSO': 'Liquidity & Cash Flow', 'DIO': 'Liquidity & Cash Flow',
                     'DPO': 'Liquidity & Cash Flow', 'CCC': 'Liquidity & Cash Flow',
-                    'OCF': 'Liquidity & Cash Flow', 'CapEx': 'Liquidity & Cash Flow', 'FCF': 'Liquidity & Cash Flow',
+                    'OCF ($k)': 'Liquidity & Cash Flow', 'CapEx ($k)': 'Liquidity & Cash Flow', 'FCF ($k)': 'Liquidity & Cash Flow',
+                    
                     'Total Debt / Adj Ebitda': 'BQR', 'Adj Ebitda / Interest Expense': 'BQR',
-                    'Net Income before extraordinary': 'BQR', '(NCO-CAPEX) / Total Debt (%)': 'BQR',
+                    'Net Income before extraordinary  ($k)': 'BQR', '(NCO-CAPEX) / Total Debt': 'BQR',
                     'Score: Operating Leverage': 'BQR', 'Score: ICR': 'BQR',
                     'Score: Net Income': 'BQR', 'Score: FCF/Debt': 'BQR', 'BQR': 'BQR'
                     }
@@ -133,7 +140,7 @@ class FinancialAnalyzer:
             'symbol': row['symbol'],
             'fiscalYear': row['fiscalYear'],
             'fiscalDateEnding': pd.to_datetime(row['date']).to_period('M').strftime("%Y-%m-%d"),
-            'Total_Revenue': f"{total_rev:,}"  # Formatted with commas for readability
+            'Total_Revenue': total_rev  # Formatted with commas for readability
         }
 
         # --- Step C: Extract Top 3 ---
@@ -142,7 +149,7 @@ class FinancialAnalyzer:
             if i <= len(top_3):
                 name, val = top_3[i - 1]
                 res[f'Segment-{i} Name'] = name
-                res[f'Segment-{i} %'] = f"{self.safe_div(val, total_rev):.1%}"
+                res[f'Segment-{i} %'] = f"{self.safe_div(val, total_rev)*100:.1f}%" if total_rev != 0 else "-"
             else:
                 res[f'Segment-{i} Name'] = '-'
                 res[f'Segment-{i} %'] = "-"
@@ -153,7 +160,7 @@ class FinancialAnalyzer:
             other_rev = sum(v for k, v in others if isinstance(v, (int, float)))
             other_names = ", ".join([k for k, v in others])
             res['Others Name'] = other_names
-            res['Others %'] = f"{self.safe_div(other_rev, total_rev):.1%}"
+            res['Others %'] = self.safe_div(other_rev, total_rev)
         else:
             res['Others Name'] = '-'
             res['Others %'] = "-"
@@ -178,8 +185,10 @@ class FinancialAnalyzer:
             .dt.to_period('M').dt.strftime("%Y-%m-%d")
         df = df.sort_values('fiscalDateEnding', ascending=True)
         df = df.set_index(current_id_vars)
-        # Ensure all columns are numeric where possible
-        df = df.apply(pd.to_numeric, errors='coerce')
+        # Ensure all numeric columns stay numeric, but preserve filing and period values.
+        non_numeric_columns = {'filingDate', 'period'}
+        numeric_columns = [c for c in df.columns if c not in non_numeric_columns]
+        df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
         available_vars = [v for v in vars_to_keep if v in df.columns]
         return df[available_vars]
 
@@ -290,13 +299,13 @@ class FinancialAnalyzer:
         # Ratios
         debt_ebitda = debt / ebitda if ebitda > 0 else 999
         icr = ebitda / abs(net_int_val) if net_int_val < 0 and ebitda > 0 else -999
-        fcf_debt_pct = 100 * fcf_val / debt if debt > 0 else 999
+        fcf_debt_pct = fcf_val / debt if debt > 0 else 999
 
         # Scores
         score_op_lev = self.map_to_op_lev(debt_ebitda)
         score_icr = self.map_to_icr(icr)
         score_ni = self.map_to_ni(ni / 1e6)
-        score_fcf = self.map_to_fcf(fcf_debt_pct)
+        score_fcf = self.map_to_fcf(100 * fcf_debt_pct)
         bqr = (score_op_lev * 0.35 + score_icr * 0.15 + score_ni * 0.25 + score_fcf * 0.25)
 
         return {
@@ -313,32 +322,42 @@ class FinancialAnalyzer:
             'Segment-3 %': row_dict.get('Segment-3 %') or '-',
             'Others': row_dict.get('Others Name') or '-',
             'Others %': row_dict.get('Others %') or '-',
-            'Revenue Total': rev,
-            'Rev-CoGS / Sale (%)': 100 * self.safe_div(gp, rev),
-            'Rev-CoGS-SG&A / Rev (%)': 100 * self.safe_div(rev - cogs - sga, rev),
-            'Op. Income / Rev (%)': 100 * self.safe_div(oi, rev),
-            'Net Profit / Rev (%)': 100 * self.safe_div(ni, rev),
+            'Revenue Total ($k)': f"{rev/1e3:,.0f}",
+            'Rev-CoGS / Rev': f"{100 * self.safe_div(gp, rev):.2f}%",
+            'Rev-CoGS-SG&A / Rev': f"{100 * self.safe_div(rev - cogs - sga, rev):.2f}%",
+            'Rev-CoGs-SG&A-Other.OpEx / Rev': f"{100 * self.safe_div(oi, rev):.2f}%",
+            'Net Income / Rev': f"{100 * self.safe_div(ni, rev):.2f}%",
 
-            'Net Income': ni, 'D & A': da, 'Net Int Inc': net_int_val,
-            'Tax Provision': tax, 'EBITDA': ebitda, 'Stock-Based Comp': sbc,
-            'Others Adj.': 'TBD', 'Adj. EBITDA': 'TBD', 'Covenant EBITDA': 'TBD',
+            'Net Income ($k)': f"{ni/1e3:,.0f}", 
+            'D & A ($k)': f"{da/1e3:,.0f}", 
+            'Net Interest Expense ($k)': f"{-net_int_val/1e3:,.0f}",
+            'Tax Provision ($k)': f"{tax/1e3:,.0f}", 
+            'EBITDA ($k)': f"{ebitda/1e3:,.0f}", 
+            'Stock-Based Comp ($k)': f"{sbc/1e3:,.0f}"   ,
+            'Others Adj.': 'TBD', 
+            'Adj. EBITDA': 'TBD', 
+            'Covenant EBITDA': 'TBD',
 
-            'Stock Price': row_dict.get('stockPrice', 0),
-            'O/S Shares': row_dict.get('numberOfShares', 0),
-            'Market Capitalization': row_dict.get('marketCapitalization', 0),
-            'Cash': row_dict.get('cashAndCashEquivalents', 0),
-            'Debt': debt,
-            'Enterprise Value':  row_dict.get('enterpriseValue', 0),
-            'netCommonStockIssuance': row_dict.get('netCommonStockIssuance', 0),
-            'netDebtIssuance': row_dict.get('netDebtIssuance', 0),
+            'Stock Price': f"{row_dict.get('stockPrice', 0):,.2f}",
+            'O/S Shares': f"{row_dict.get('numberOfShares', 0):,.0f}",
+            'Market Capitalization ($k)': f"{row_dict.get('marketCapitalization', 0)/1e3:,.0f}",
+            'Cash ($k)': f"{row_dict.get('cashAndCashEquivalents', 0)/1e3:,.0f}",
+            'Debt ($k)': f"{debt/1e3:,.0f}",
+            'Enterprise Value ($k)':  f"{row_dict.get('enterpriseValue', 0)/1e3:,.0f}",
+            'netCommonStockIssuance ($k)': f"{row_dict.get('netCommonStockIssuance', 0)/1e3:,.0f}",
+            'netDebtIssuance ($k)': f"{row_dict.get('netDebtIssuance', 0)/1e3:,.0f}",
             # liquidity & Cash flow
-            'DSO': dso, 'DIO': dio, 'DPO': dpo, 'CCC': dso + dio - dpo,
-            'OCF': ocf, 'CapEx': capex, 'FCF': fcf_val,
+            'DSO': f"{dso:.1f}", 'DIO': f"{dio:.1f}", 'DPO': f"{dpo:.1f}", 
+            'CCC': f"{dso + dio - dpo:.1f}",
+            
+            'OCF ($k)': f"{ocf/1e3:,.0f}", 
+            'CapEx ($k)': f"{capex/1e3:,.0f}", 
+            'FCF ($k)': f"{fcf_val/1e3:,.0f}",
 
-            'Total Debt / Adj Ebitda': debt_ebitda, 'Adj Ebitda / Interest Expense': icr,
-            'Net Income before extraordinary': ni, '(NCO-CAPEX) / Total Debt (%)': fcf_debt_pct,
+            'Total Debt / Adj Ebitda': f"{debt_ebitda:.1f}x", 'Adj Ebitda / Interest Expense': f"{icr:.1f}x",
+            'Net Income before extraordinary ($k)': f"{ni/1e3:,.0f}", '(NCO-CAPEX) / Total Debt': f"{100*fcf_debt_pct:.2f}%",
             'Score: Operating Leverage': score_op_lev, 'Score: ICR': score_icr,
-            'Score: Net Income': score_ni, 'Score: FCF/Debt': score_fcf, 'BQR': bqr
+            'Score: Net Income': score_ni, 'Score: FCF/Debt': score_fcf, 'BQR': f"{bqr:.1f}"
         }
 
     def process_ltm_data(self, df_raw, num_ltm_periods=50):

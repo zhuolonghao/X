@@ -1,0 +1,50 @@
+Category,Metric,DK,PBF
+Header,Fiscal Period,2025-Q4,2025-Q4
+Header,Statement Date,2025-12-31,2025-12-31
+Header,Filing Date,2026-02-27,2026-02-12
+Revenue & Margin,Segment-1,Refining,Prior to elimination
+Revenue & Margin,Segment-1 %,91.2%,50.0%
+Revenue & Margin,Segment-2,Logistics,Refining Group
+Revenue & Margin,Segment-2 %,8.8%,49.4%
+Revenue & Margin,Segment-3,Retail Segment,Logistics Group
+Revenue & Margin,Segment-3 %,4.8%,0.6%
+Revenue & Margin,Others,-,-
+Revenue & Margin,Others %,-,-
+Revenue & Margin,Revenue Total ($k),"10,722,900","29,332,300"
+Revenue & Margin,Rev-CoGS / Rev,6.61%,-1.95%
+Revenue & Margin,Rev-CoGS-SG&A / Rev,4.30%,-3.08%
+Revenue & Margin,Rev-CoGs-SG&A-Other.OpEx / Rev,3.16%,-0.19%
+Revenue & Margin,Net Income / Rev,-0.21%,-0.54%
+EBITDA,Net Income ($k),"-22,800","-158,500"
+EBITDA,D & A ($k),"397,800","662,800"
+EBITDA,Net Interest Expense ($k),"345,300","181,600"
+EBITDA,Tax Provision ($k),"-6,800","-74,100"
+EBITDA,EBITDA ($k),"713,500","611,800"
+EBITDA,Stock-Based Comp ($k),"21,100","39,000"
+EBITDA,Others Adj.,TBD,TBD
+EBITDA,Adj. EBITDA,TBD,TBD
+EBITDA,Covenant EBITDA,TBD,TBD
+Capital Structure,Stock Price,29.66,27.12
+Capital Structure,O/S Shares,"60,030,006","116,657,218"
+Capital Structure,Market Capitalization ($k),"1,780,490","3,163,744"
+Capital Structure,Cash ($k),"625,800","527,900"
+Capital Structure,Debt ($k),"3,352,500","2,901,500"
+Capital Structure,Enterprise Value ($k),"4,507,190","5,537,344"
+Capital Structure,netCommonStockIssuance ($k),"-20,000","6,000"
+Other,netDebtIssuance,"52,900","-252,800"
+Liquidity & Cash Flow,DSO,23.2,15.1
+Liquidity & Cash Flow,DIO,29.2,33.5
+Liquidity & Cash Flow,DPO,64.9,10.5
+Liquidity & Cash Flow,CCC,-12.5,38.1
+Other,OCF ($k),"539,400","-78,000"
+Liquidity & Cash Flow,CapEx ($k),"-533,000","-438,100"
+Liquidity & Cash Flow,FCF ($k),"2,800","-783,200"
+BQR,Total Debt / Adj Ebitda,4.7x,4.7x
+BQR,Adj Ebitda / Interest Expense,2.1x,3.4x
+Other,Net Income before extraordinary ($k),"-22,800","-158,500"
+BQR,(NCO-CAPEX) / Total Debt,0.08%,-26.99%
+BQR,Score: Operating Leverage,55,55
+BQR,Score: ICR,65,58
+BQR,Score: Net Income,75,75
+BQR,Score: FCF/Debt,75,75
+BQR,BQR,66.5,65.5

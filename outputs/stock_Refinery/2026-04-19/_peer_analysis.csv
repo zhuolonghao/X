@@ -1,48 +1,48 @@
 Category,Metric,DK,MPC,PBF
 Header,Fiscal Period,2025-0.0,2025-0.0,2025-0.0
-Header,Statement Date,2025-12-31,2025-12-31,2025-12-31
-Header,Filing Date,0.0,0.0,0.0
+Header,Statement Date,12/31/2025,12/31/2025,12/31/2025
+Header,Filing Date,0,0,0
 Revenue & Margin,Segment-1,Refining,Refining And Marketing,Prior to elimination
-Revenue & Margin,Segment-1 %,91.2%,93.6%,50.0%
+Revenue & Margin,Segment-1 %,91.20%,93.60%,50.00%
 Revenue & Margin,Segment-2,Logistics,Midstream,Refining Group
-Revenue & Margin,Segment-2 %,8.8%,4.2%,49.4%
+Revenue & Margin,Segment-2 %,8.80%,4.20%,49.40%
 Revenue & Margin,Segment-3,Retail Segment,Renewable Diesel,Logistics Group
-Revenue & Margin,Segment-3 %,4.8%,2.1%,0.6%
+Revenue & Margin,Segment-3 %,4.80%,2.10%,0.60%
 Revenue & Margin,Others,-,-,-
 Revenue & Margin,Others %,-,-,-
-Revenue & Margin,Revenue Total,10722900000,132699000000,29332300000
-Revenue & Margin,Rev-CoGS / Sale (%),6.6073543537662385,7.537358985372912,-1.9466594845954799
-Revenue & Margin,Rev-CoGS-SG&A / Rev (%),4.304805602961885,5.013602212526093,-3.079540301987911
-Revenue & Margin,Op. Income / Rev (%),3.1595930205448153,4.346679326897716,-0.18512015764191694
-Revenue & Margin,Net Profit / Rev (%),-0.21262904624681755,3.0497592295345104,-0.5403599444980448
-EBITDA,Net Income,-22800000,4047000000,-158500000
-EBITDA,D & A,397800000,858000000,662800000
-EBITDA,Net Int Inc,-345300000,-1249000000,-181600000
-EBITDA,Tax Provision,-6800000,1137000000,-74100000
-EBITDA,EBITDA,713500000,7291000000,611800000
-EBITDA,Stock-Based Comp,21100000,0,39000000
+Revenue & Margin,Revenue Total," 10,722,900,000 "," 132,699,000,000 "," 29,332,300,000 "
+Revenue & Margin,Rev-CoGS / Sale (%),661%,754%,-195%
+Revenue & Margin,Rev-CoGS-SG&A / Rev (%),430%,501%,-308%
+Revenue & Margin,Op. Income / Rev (%),316%,435%,-19%
+Revenue & Margin,Net Profit / Rev (%),-21%,305%,-54%
+EBITDA,Net Income," (22,800,000)"," 4,047,000,000 "," (158,500,000)"
+EBITDA,D & A," 397,800,000 "," 858,000,000 "," 662,800,000 "
+EBITDA,Net Int Inc," (345,300,000)"," (1,249,000,000)"," (181,600,000)"
+EBITDA,Tax Provision," (6,800,000)"," 1,137,000,000 "," (74,100,000)"
+EBITDA,EBITDA," 713,500,000 "," 7,291,000,000 "," 611,800,000 "
+EBITDA,Stock-Based Comp," 21,100,000 ", -   ," 39,000,000 "
 EBITDA,Others Adj.,TBD,TBD,TBD
 EBITDA,Adj. EBITDA,TBD,TBD,TBD
 EBITDA,Covenant EBITDA,TBD,TBD,TBD
 Capital Structure,Stock Price,29.66,162.63,27.12
-Capital Structure,O/S Shares,60030006,299000000,116657218
-Capital Structure,Market Capitalization,1780489977,48626370000,3163743752
-Capital Structure,Cash,625800000,3672000000,527900000
-Capital Structure,Debt,3352500000,34358000000,2901500000
-Capital Structure,Enterprise Value,4507189977,79312370000,5537343752
-Capital Structure,netCommonStockIssuance,-20000000,-1001000000,6000000
-Capital Structure,netDebtIssuance,52899999,-25000000,-252800000
-Liquidity & Cash Flow,DSO,23.205441158641783,30.288076775258293,15.117131967148843
-Liquidity & Cash Flow,DIO,29.237285808435853,30.158602084810546,33.46399895663689
-Liquidity & Cash Flow,DPO,64.94765038344784,39.82747133181741,10.453532720468978
-Liquidity & Cash Flow,CCC,-12.504923416370204,20.619207528251437,38.12759820331676
-Liquidity & Cash Flow,OCF,539400000,8253000000,-78000000
-Liquidity & Cash Flow,CapEx,-533000000,-3486000000,-438100000
-Liquidity & Cash Flow,FCF,2800000,4767000000,-783200000
-BQR,Total Debt / Adj Ebitda,4.6986685353889275,4.712385132354958,4.742562929061785
-BQR,Adj Ebitda / Interest Expense,2.066319142774399,5.837469975980785,3.368942731277533
-BQR,Net Income before extraordinary,-22800000,4047000000,-158500000
-BQR,(NCO-CAPEX) / Total Debt (%),0.08351976137211037,13.874497933523488,-26.99293468895399
+Capital Structure,O/S Shares," 60,030,006 "," 299,000,000 "," 116,657,218 "
+Capital Structure,Market Capitalization," 1,780,489,977 "," 48,626,370,000 "," 3,163,743,752 "
+Capital Structure,Cash," 625,800,000 "," 3,672,000,000 "," 527,900,000 "
+Capital Structure,Debt," 3,352,500,000 "," 34,358,000,000 "," 2,901,500,000 "
+Capital Structure,Enterprise Value," 4,507,189,977 "," 79,312,370,000 "," 5,537,343,752 "
+Capital Structure,netCommonStockIssuance," (20,000,000)"," (1,001,000,000)"," 6,000,000 "
+Capital Structure,netDebtIssuance," 52,899,999 "," (25,000,000)"," (252,800,000)"
+Liquidity & Cash Flow,DSO, 23.2 , 30.3 , 15.1 
+Liquidity & Cash Flow,DIO, 29.2 , 30.2 , 33.5 
+Liquidity & Cash Flow,DPO, 64.9 , 39.8 , 10.5 
+Liquidity & Cash Flow,CCC, (12.50), 20.62 , 38.13 
+Liquidity & Cash Flow,OCF," 539,400,000 "," 8,253,000,000 "," (78,000,000)"
+Liquidity & Cash Flow,CapEx," (533,000,000)"," (3,486,000,000)"," (438,100,000)"
+Liquidity & Cash Flow,FCF," 2,800,000 "," 4,767,000,000 "," (783,200,000)"
+BQR,Total Debt / Adj Ebitda, 4.70 , 4.71 , 4.74 
+BQR,Adj Ebitda / Interest Expense, 2.07 , 5.84 , 3.37 
+BQR,Net Income before extraordinary," $(22,800,000)"," $4,047,000,000 "," $(158,500,000)"
+BQR,(NCO-CAPEX) / Total Debt (%), 0.08 , 13.87 , (26.99)
 BQR,Score: Operating Leverage,55,55,55
 BQR,Score: ICR,65,48,58
 BQR,Score: Net Income,75,15,75
