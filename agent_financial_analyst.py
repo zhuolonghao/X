@@ -19,6 +19,10 @@ TICKER_LIST = ['stock_Refinery',
                ["DK", "PBF"]
 ]
 
+TICKER_LIST = ['MedSurg_Cardiovascular',
+               ["BSX", "MDT", "ABT", "JNJ", "EW", "SYK"]
+]
+
 # --- Setup Output Directory ---
 output_dir = os.path.join("outputs", TICKER_LIST[0], date.today().isoformat())
 # Create the folder path if it doesn't exist

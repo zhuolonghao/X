@@ -8,6 +8,8 @@ if api_key:
 else:
     print("GEMINI_API_KEY not found in environment variables.")
 
+
+###########################################################################################
 def ask_and_record(
         prompt, 
         model = "gemini-3-flash-preview", filename = "gemini_history.txt"): 
@@ -39,7 +41,7 @@ result = ask_and_record(question)
 print(f"\nGemini's Response:\n{result}")
 
 
-
+###########################################################################################
 
 from google import genai
 from pydantic import BaseModel, Field

@@ -31,7 +31,7 @@ class FMPClient:
         elif endpoint in ('news'):
             url = f"{self.base_url}/{endpoint}/stock?symbols={symbol}&from={from_date_1y}&to={to_date}&page=0&limit=100&apikey={self.api_key}"
         elif endpoint in ('sec-filings-search'):
-            url = f"{self.base_url}/{endpoint}/symbol?symbol={symbol}&from={from_date}&to={to_date}&page=3&limit=300&apikey={self.api_key}"
+            url = f"{self.base_url}/{endpoint}/symbol?symbol={symbol}&from={from_date}&to={to_date}&page=0&limit=300&apikey={self.api_key}"
         else:
             url = f"{self.base_url}/{endpoint}?symbol={symbol}&period=quarter&limit=20&apikey={self.api_key}"
         try:
@@ -98,7 +98,7 @@ class FinancialAnalyzer:
                     'OCF ($k)': 'Liquidity & Cash Flow', 'CapEx ($k)': 'Liquidity & Cash Flow', 'FCF ($k)': 'Liquidity & Cash Flow',
                     
                     'Total Debt / Adj Ebitda': 'BQR', 'Adj Ebitda / Interest Expense': 'BQR',
-                    'Net Income before extraordinary  ($k)': 'BQR', '(NCO-CAPEX) / Total Debt': 'BQR',
+                    'Net Income before extraordinary ($k)': 'BQR', '(NCO-CAPEX) / Total Debt': 'BQR',
                     'Score: Operating Leverage': 'BQR', 'Score: ICR': 'BQR',
                     'Score: Net Income': 'BQR', 'Score: FCF/Debt': 'BQR', 'BQR': 'BQR'
                     }
@@ -160,7 +160,7 @@ class FinancialAnalyzer:
             other_rev = sum(v for k, v in others if isinstance(v, (int, float)))
             other_names = ", ".join([k for k, v in others])
             res['Others Name'] = other_names
-            res['Others %'] = self.safe_div(other_rev, total_rev)
+            res['Others %'] = f"{self.safe_div(other_rev, total_rev)*100:.1f}%" if total_rev != 0 else "-"  
         else:
             res['Others Name'] = '-'
             res['Others %'] = "-"
@@ -310,7 +310,7 @@ class FinancialAnalyzer:
 
         return {
             'Period': label,
-            'Fiscal Period': f"{row_dict.get('fiscalYear')}-{row_dict.get('period')}",
+            'Fiscal Period': f"{int(row_dict.get('fiscalYear', 0))}-{row_dict.get('period')}",
             'Statement Date': row_dict.get('fiscalDateEnding'),
             'Filing Date': row_dict.get('filingDate'),
 
