@@ -4,7 +4,7 @@ from google import genai
 client = genai.Client()
 api_key = os.getenv('GEMINI_API_KEY')
 if api_key:
-    print(f"GEMINI_API_KEY: {api_key}")
+    print(f"GEMINI_API_KEY is found")
 else:
     print("GEMINI_API_KEY not found in environment variables.")
 
