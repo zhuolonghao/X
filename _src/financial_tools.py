@@ -21,6 +21,7 @@ class FMPClient:
         """
         # Calculate date range for past 6 months
         to_date = datetime.now().strftime('%Y-%m-%d')
+        yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
         from_date = (datetime.now() - timedelta(days=365*3)).strftime('%Y-%m-%d')
         from_date_1y = (datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')
         
@@ -32,6 +33,9 @@ class FMPClient:
             url = f"{self.base_url}/{endpoint}/stock?symbols={symbol}&from={from_date_1y}&to={to_date}&page=0&limit=100&apikey={self.api_key}"
         elif endpoint in ('sec-filings-search'):
             url = f"{self.base_url}/{endpoint}/symbol?symbol={symbol}&from={from_date}&to={to_date}&page=0&limit=300&apikey={self.api_key}"
+        elif endpoint in ('sec-filings-8k'):
+            url = f"{self.base_url}/{endpoint}?&from={yesterday}&to={to_date}&page=0&limit=1000&apikey={self.api_key}"
+            print(f"{url}")
         else:
             url = f"{self.base_url}/{endpoint}?symbol={symbol}&period=quarter&limit=20&apikey={self.api_key}"
         try:
@@ -64,7 +68,7 @@ class FinancialAnalyzer:
                          'netIncome', 'netInterestIncome', 'incomeTaxExpense', 'ebit', 'ebitda',
                          'weightedAverageShsOut', 'weightedAverageShsOutDil']
         self.bs_vars = ['netReceivables', 'inventory',  'accountPayables',
-                        'cashAndCashEquivalents', 'totalDebt']
+                        'cashAndCashEquivalents', 'totalDebt', 'totalStockholdersEquity']
         self.cf_vars = ['operatingCashFlow', 'investmentsInPropertyPlantAndEquipment', 'freeCashFlow',
                         'stockBasedCompensation', 'depreciationAndAmortization',
                         'netCommonStockIssuance', 'netDebtIssuance']
@@ -97,6 +101,7 @@ class FinancialAnalyzer:
                     'DPO': 'Liquidity & Cash Flow', 'CCC': 'Liquidity & Cash Flow',
                     'OCF ($k)': 'Liquidity & Cash Flow', 'CapEx ($k)': 'Liquidity & Cash Flow', 'FCF ($k)': 'Liquidity & Cash Flow',
                     
+                    'Total Debt / Equity': 'BQR-Mid-Mkt',
                     'Total Debt / Adj Ebitda': 'BQR', 'Adj Ebitda / Interest Expense': 'BQR',
                     'Net Income before extraordinary ($k)': 'BQR', '(NCO-CAPEX) / Total Debt': 'BQR',
                     'Score: Operating Leverage': 'BQR', 'Score: ICR': 'BQR',
@@ -295,8 +300,10 @@ class FinancialAnalyzer:
         capex = row_dict.get('investmentsInPropertyPlantAndEquipment', 0)
         fcf_val = row_dict.get('freeCashFlow', 0)
         debt = row_dict.get('totalDebt', 0)
+        equity = row_dict.get('totalStockholdersEquity', 0)
 
         # Ratios
+        debt_equity = debt / equity if equity > 0 else 999
         debt_ebitda = debt / ebitda if ebitda > 0 else 999
         icr = ebitda / abs(net_int_val) if net_int_val < 0 and ebitda > 0 else -999
         fcf_debt_pct = fcf_val / debt if debt > 0 else 999
@@ -354,10 +361,16 @@ class FinancialAnalyzer:
             'CapEx ($k)': f"{capex/1e3:,.0f}", 
             'FCF ($k)': f"{fcf_val/1e3:,.0f}",
 
-            'Total Debt / Adj Ebitda': f"{debt_ebitda:.1f}x", 'Adj Ebitda / Interest Expense': f"{icr:.1f}x",
-            'Net Income before extraordinary ($k)': f"{ni/1e3:,.0f}", '(NCO-CAPEX) / Total Debt': f"{100*fcf_debt_pct:.2f}%",
-            'Score: Operating Leverage': score_op_lev, 'Score: ICR': score_icr,
-            'Score: Net Income': score_ni, 'Score: FCF/Debt': score_fcf, 'BQR': f"{bqr:.1f}"
+            'Total Debt / Equity': f"{debt_equity:.1f}x",
+            'Total Debt / Adj Ebitda': f"{debt_ebitda:.1f}x", 
+            'Adj Ebitda / Interest Expense': f"{icr:.1f}x",
+            'Net Income before extraordinary ($k)': f"{ni/1e3:,.0f}", 
+            '(NCO-CAPEX) / Total Debt': f"{100*fcf_debt_pct:.2f}%",
+            'Score: Operating Leverage': score_op_lev, 
+            'Score: ICR': score_icr,
+            'Score: Net Income': score_ni, 
+            'Score: FCF/Debt': score_fcf, 
+            'BQR': f"{bqr:.1f}"
         }
 
     def process_ltm_data(self, df_raw, num_ltm_periods=50):
@@ -403,6 +416,7 @@ class FinancialAnalyzer:
                 'accountPayables': window['accountPayables'].mean(),
                 # Snapshots
                 'totalDebt': window.iloc[0]['totalDebt'],
+                'totalStockholdersEquity': window.iloc[0]['totalStockholdersEquity'],
                 'cashAndCashEquivalents': window.iloc[0]['cashAndCashEquivalents'],
                 'netCommonStockIssuance': window.iloc[0]['netCommonStockIssuance'],
                 'netDebtIssuance': window.iloc[0]['netDebtIssuance'],

@@ -1,3 +1,5 @@
 # Ignore Google Drive temporary sync folders
 .tmp.driveupload/
 _src/financial_tools.py
+.vscode
+.vscode/
