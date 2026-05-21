@@ -34,7 +34,7 @@ class FMPClient:
         elif endpoint in ('sec-filings-search'):
             url = f"{self.base_url}/{endpoint}/symbol?symbol={symbol}&from={from_date}&to={to_date}&page=0&limit=300&apikey={self.api_key}"
         elif endpoint in ('sec-filings-8k'):
-            url = f"{self.base_url}/{endpoint}?&from={yesterday}&to={to_date}&page=0&limit=1000&apikey={self.api_key}"
+            url = f"{self.base_url}/{endpoint}?&from={to_date}&to={to_date}&page=0&limit=1000&apikey={self.api_key}"
             print(f"{url}")
         else:
             url = f"{self.base_url}/{endpoint}?symbol={symbol}&period=quarter&limit=20&apikey={self.api_key}"

@@ -3,7 +3,6 @@ sys.path.insert(0, "_src")
 from financial_tools import FMPClient
 
 import pandas as pd
-import numpy as np
 from datetime import date
 from pathlib import Path
 
@@ -216,3 +215,23 @@ for i, filing in enumerate(filings_8k, start=1):
     time.sleep(0.2)
 
 pd.DataFrame(all_results).to_csv(output_dir / "filings_8k_assessment.csv", index=False)
+
+results_df = pd.DataFrame(all_results)
+results_df = results_df[results_df["matched"] == True]
+results_df = results_df[results_df["document_type"] == "8-K"]
+results_df = results_df[["symbol", "filingDate", "filing_detail_url", "document_type"]]
+results_df.to_csv(output_dir / "filings_8k_assessment_matched.csv", index=False)
+
+import subprocess
+def git_push(message, folder_path):
+    try:
+        # Add all files in the specific output directory
+        subprocess.run(["git", "add", folder_path], check=True)
+        # Commit with a custom message
+        subprocess.run(["git", "commit", "-m", message], check=True)
+        # Push to the remote repository (usually 'origin main' or 'origin master')
+        subprocess.run(["git", "push"], check=True)
+        print("Successfully pushed to Git!")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during Git operations: {e}")
+git_push("8-K Filings Assessment", output_dir)
