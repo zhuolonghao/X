@@ -1,2 +1,2 @@
 [industry_name, [ticker1, ticker2, ticker3, so_on_so_forth]]
-[Analytical_semi, [pdfs, cdns, klac, asml, onto, snps]]
+[semi, [pdfs, cdns, klac, asml, onto, snps]]
