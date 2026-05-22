@@ -92,7 +92,8 @@ def git_push(message, folder_path):
 for TICKER_LIST in ticker_list[1::]:
     if TICKER_LIST is not None:
         # --- Setup Output Directory ---
-        output_dir = Path("outputs") / f"{TICKER_LIST[0]}_{TICKER_LIST[1][0]}" / date.today().isoformat()
+        base_dir = Path("outputs") / f"{TICKER_LIST[0]}_{TICKER_LIST[1][0]}"
+        output_dir = base_dir / date.today().isoformat()
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # --- Instantiate the Classes ---
@@ -172,7 +173,7 @@ for TICKER_LIST in ticker_list[1::]:
             price_df.to_excel(price_file, index=False)
             print(f"\nSuccess! daily price dataset saved to {price_file}")
             # Export to Excel
-            news_file = os.path.join("outputs", TICKER_LIST[0], "_news.xlsx")
+            news_file = base_dir / "_news.xlsx"
             writer_kwargs = {'engine': 'openpyxl', 'mode': 'w'}
             if os.path.exists(news_file):
                 writer_kwargs['mode'] = 'a'
@@ -182,7 +183,7 @@ for TICKER_LIST in ticker_list[1::]:
                     pd.DataFrame(v).to_excel(writer, sheet_name=k, index=False)
             print(f"\nSuccess! news dataset saved to {news_file}")
 
-            sec_filings_file = os.path.join("outputs", TICKER_LIST[0], "_sec_filings.xlsx")
+            sec_filings_file = base_dir / "_sec_filings.xlsx"
             with pd.ExcelWriter(sec_filings_file, **writer_kwargs) as writer:   
                 for k, v in all_tickers_sec_filings.items():
                     pd.DataFrame(v).to_excel(writer, sheet_name=k, index=False)       
