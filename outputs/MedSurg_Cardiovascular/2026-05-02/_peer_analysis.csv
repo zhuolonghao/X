@@ -1,0 +1,50 @@
+Category,Metric,ABT,BSX,EW,JNJ,MDT,SYK
+Header,Fiscal Period,2026-Q1,2026-Q1,2026-Q1,2026-Q1,2026-Q3,2026-Q1
+Header,Statement Date,2026-03-31,2026-03-31,2026-03-31,2026-03-31,2026-01-31,2026-03-31
+Header,Filing Date,2026-04-29,2026-03-31,2026-03-31,2026-04-22,2026-02-24,2026-04-30
+Revenue & Margin,Segment-1,Medical Devices,Cardiovascular,Transcatheter Heart Valves,Innovative Medicine,Cardiac and Vascular Group,MedSurg
+Revenue & Margin,Segment-1 %,48.3%,66.0%,74.0%,64.1%,37.3%,62.3%
+Revenue & Margin,Segment-2,Diagnostic Products,MedSurg,Surgical Heart Valve Therapy,MedTech,Neuroscience Group,Orthopaedics
+Revenue & Margin,Segment-2 %,20.2%,34.0%,17.0%,35.9%,29.4%,37.7%
+Revenue & Margin,Segment-3,Nutritional Products,Cardiac Rhythm Management,Transcatheter Mitral And Tricuspid Therapies,Consumer,Medical Surgical,-
+Revenue & Margin,Segment-3 %,19.1%,27.7%,9.1%,15.7%,25.1%,-
+Revenue & Margin,Others,Established Pharmaceutical Products,-,Transcatheter Mitral And Tricuspid Therapies,-,Diabetes Group,-
+Revenue & Margin,Others %,12.5%,-,3.3%,-,8.2%,-
+Revenue & Margin,Revenue Total ($k),"45,134,000","20,615,000","6,303,500","96,362,000","35,484,000","25,270,000"
+Revenue & Margin,Rev-CoGS / Rev,56.38%,70.41%,78.01%,69.12%,61.95%,63.67%
+Revenue & Margin,Rev-CoGS-SG&A / Rev,28.49%,36.11%,44.01%,43.70%,29.69%,29.85%
+Revenue & Margin,Rev-CoGs-SG&A-Other.OpEx / Rev,18.17%,20.12%,27.62%,26.87%,17.86%,21.34%
+Revenue & Margin,Net Income / Rev,13.91%,17.24%,17.34%,21.83%,13.00%,13.21%
+EBITDA,Net Income ($k),"6,276,000","3,553,000","1,092,800","21,040,000","4,614,000","3,337,000"
+EBITDA,D & A ($k),"3,090,000","1,043,000","120,000","7,735,000","3,173,000","946,000"
+EBITDA,Net Interest Expense ($k),"127,000","357,000","-145,400","86,000","558,000","645,000"
+EBITDA,Tax Provision ($k),"1,861,000","184,000","224,900","3,900,000","923,000","1,263,000"
+EBITDA,EBITDA ($k),"11,354,000","5,137,000","1,292,300","32,761,000","9,268,000","6,191,000"
+EBITDA,Stock-Based Comp ($k),"692,000","154,000","117,900","1,366,000","451,000","111,000"
+EBITDA,Others Adj.,TBD,TBD,TBD,TBD,TBD,TBD
+EBITDA,Adj. EBITDA,TBD,TBD,TBD,TBD,TBD,TBD
+EBITDA,Covenant EBITDA,TBD,TBD,TBD,TBD,TBD,TBD
+Capital Structure,Stock Price,102.67,62.75,80.08,242.49,100.88,328.59
+Capital Structure,O/S Shares,"1,746,959,000","1,484,900,000","579,200,000","2,445,233,000","1,282,100,000","382,900,000"
+Capital Structure,Market Capitalization ($k),"179,360,281","93,177,475","46,382,336","592,944,550","129,338,248","125,817,111"
+Capital Structure,Cash ($k),"6,803,000",0,0,"21,688,000","1,147,000","2,878,000"
+Capital Structure,Debt ($k),"34,047,000",0,0,"17,460,000","28,071,000","14,224,000"
+Capital Structure,Enterprise Value ($k),"206,604,281","93,177,475","46,382,336","588,716,550","156,262,248","137,163,111"
+Capital Structure,netCommonStockIssuance ($k),"-64,000",0,0,"-2,856,000","59,000",0
+Capital Structure,netDebtIssuance ($k),"18,475,000",0,0,"7,214,000","-1,229,000",0
+Liquidity & Cash Flow,DSO,65.2,37.9,39.2,66.6,49.5,54.8
+Liquidity & Cash Flow,DIO,125.8,130.6,224.2,172.7,70.7,212.6
+Liquidity & Cash Flow,DPO,80.4,46.5,36.5,127.4,68.6,29.2
+Liquidity & Cash Flow,CCC,110.6,122.0,226.9,112.0,51.6,238.1
+Liquidity & Cash Flow,OCF ($k),"9,464,000","3,993,000","1,314,800","22,870,000","7,285,000","4,794,000"
+Liquidity & Cash Flow,CapEx ($k),"-2,086,000","-689,000","-204,200","-5,086,000","-1,875,000","-638,000"
+Liquidity & Cash Flow,FCF ($k),"7,378,000","3,271,000","1,110,600","17,798,000","5,410,000","4,156,000"
+BQR,Total Debt / Adj Ebitda,3.0x,0.0x,0.0x,0.5x,3.0x,2.3x
+BQR,Adj Ebitda / Interest Expense,89.4x,14.4x,-999.0x,380.9x,16.6x,9.6x
+BQR,Net Income before extraordinary ($k),"6,276,000","3,553,000","1,092,800","21,040,000","4,614,000","3,337,000"
+BQR,(NCO-CAPEX) / Total Debt,21.67%,99900.00%,99900.00%,101.94%,19.27%,29.22%
+BQR,Score: Operating Leverage,45,15,15,25,45,42
+BQR,Score: ICR,15,35,75,15,25,45
+BQR,Score: Net Income,15,25,25,15,15,25
+BQR,Score: FCF/Debt,45,15,15,15,48,42
+BQR,BQR,33.0,20.5,26.5,18.5,35.2,38.2
