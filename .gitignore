@@ -3,3 +3,8 @@
 _src/financial_tools.py
 .vscode
 .vscode/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python

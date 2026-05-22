@@ -15,7 +15,6 @@ pd.set_option('display.expand_frame_repr', False)
 output_dir = Path("sec_filings_8k") / date.today().strftime("%Y-%m-%d")
 output_dir.mkdir(exist_ok=True) 
 
-
 # --- Instantiate the Classes ---
 client1 = FMPClient()
 filings_8k = client1.get_data('sec-filings-8k', "ALL")
@@ -169,7 +168,7 @@ def search_actual_sec_documents(filing_detail_url):
 
 all_results = []
 
-for i, filing in enumerate(filings_8k, start=1):
+for i, filing in enumerate(filings_8k[:4], start=1):
     symbol = filing.get("symbol")
     filing_date = filing.get("filingDate")
     filing_detail_url = filing.get("link")
