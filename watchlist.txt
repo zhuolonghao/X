@@ -1,2 +1,1 @@
 [industry_name, [ticker1, ticker2, so_on_so-forth]]
-[refinery, [dk, mpc, pbf, oke, dino]]
