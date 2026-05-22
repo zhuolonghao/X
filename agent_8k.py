@@ -224,11 +224,20 @@ results_df.to_csv(output_dir / "filings_8k_assessment_matched.csv", index=False)
 import subprocess
 def git_push(message, folder_path):
     try:
-        # Add all files in the specific output directory
+        # Add files in the specific output directory
         subprocess.run(["git", "add", folder_path], check=True)
+        # Also add any other modified files in the repo
+        subprocess.run(["git", "add", "-A"], check=True)
+        
+        # Check if there are staged changes
+        result = subprocess.run(["git", "diff", "--cached", "--quiet"], capture_output=True)
+        if result.returncode == 0:
+            print("No changes to commit")
+            return
+        
         # Commit with a custom message
         subprocess.run(["git", "commit", "-m", message], check=True)
-        # Push to the remote repository (usually 'origin main' or 'origin master')
+        # Push to the remote repository
         subprocess.run(["git", "push"], check=True)
         print("Successfully pushed to Git!")
     except subprocess.CalledProcessError as e:
