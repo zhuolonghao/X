@@ -7,6 +7,7 @@ import subprocess
 import pandas as pd
 import numpy as np
 from datetime import date
+from pathlib import Path
 
 
 pd.set_option('display.max_columns', None)
@@ -30,11 +31,8 @@ TICKER_LIST = ['analytical_semiconductors',
 
 
 # --- Setup Output Directory ---
-output_dir = os.path.join("outputs", TICKER_LIST[0], date.today().isoformat())
-# Create the folder path if it doesn't exist
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-    print(f"Created directory: {output_dir}")
+output_dir = Path("outputs") / TICKER_LIST[0] / date.today().isoformat()
+output_dir.mkdir(parents=True, exist_ok=True)
 
 # --- Instantiate the Classes ---
 client1 = FMPClient()

@@ -8,3 +8,14 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+.env
+.env.*
+config.json
+secrets.json
+credentials.json
+token.txt
+*.pem
+id_rsa
+id_ed25519
+__pycache__/
+*.log

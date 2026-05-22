@@ -168,7 +168,7 @@ def search_actual_sec_documents(filing_detail_url):
 
 all_results = []
 
-for i, filing in enumerate(filings_8k[:4], start=1):
+for i, filing in enumerate(filings_8k, start=1):
     symbol = filing.get("symbol")
     filing_date = filing.get("filingDate")
     filing_detail_url = filing.get("link")
@@ -227,7 +227,7 @@ def git_push(message, folder_path):
         # Add files in the specific output directory
         subprocess.run(["git", "add", folder_path], check=True)
         # Also add any other modified files in the repo
-        subprocess.run(["git", "add", "-A"], check=True)
+        #subprocess.run(["git", "add", "-A"], check=True)
         
         # Check if there are staged changes
         result = subprocess.run(["git", "diff", "--cached", "--quiet"], capture_output=True)
