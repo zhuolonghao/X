@@ -1,0 +1,51 @@
+Category,Metric,GAP,LE,PLCE
+Header,Fiscal Period,2025-Q4,2025-Q4,2025-Q4
+Header,Statement Date,2026-01-31,2026-01-31,2026-01-31
+Header,Filing Date,2026-03-17,2026-03-26,2026-04-10
+Revenue & Margin,Segment-1,-,U Se Commerce,The Childrens Place US Member
+Revenue & Margin,Segment-1 %,-,62.2%,91.3%
+Revenue & Margin,Segment-2,-,Business Outfitters Revenue,The Children's Place Canada
+Revenue & Margin,Segment-2 %,-,18.1%,8.7%
+Revenue & Margin,Segment-3,-,Third Party,-
+Revenue & Margin,Segment-3 %,-,6.8%,-
+Revenue & Margin,Others,-,"Europe eCommerce, Licensing and Retail",-
+Revenue & Margin,Others %,-,12.9%,-
+Revenue & Margin,Revenue Total ($k),"15,366,000","1,335,146","1,208,830"
+Revenue & Margin,Rev-CoGS / Rev,40.79%,47.63%,27.17%
+Revenue & Margin,Rev-CoGS-SG&A / Rev,40.79%,38.89%,-4.35%
+Revenue & Margin,Rev-CoGs-SG&A-Other.OpEx / Rev,7.26%,3.92%,-4.35%
+Revenue & Margin,Net Income / Rev,5.31%,0.41%,-7.30%
+EBITDA,Net Income ($k),"816,000","5,508","-88,263"
+EBITDA,D & A ($k),"621,000","30,169","33,073"
+EBITDA,Net Interest Expense ($k),"-17,000","36,717","31,889"
+EBITDA,Tax Provision ($k),"316,000","2,243","-2,022"
+EBITDA,EBITDA ($k),"1,736,000","74,637","-25,323"
+EBITDA,Stock-Based Comp ($k),"152,000","3,779","2,943"
+EBITDA,Others Adj.,TBD,TBD,TBD
+EBITDA,Adj. EBITDA,TBD,TBD,TBD
+EBITDA,Covenant EBITDA,TBD,TBD,TBD
+Capital Structure,Stock Price,27.98,17.76,4.03
+Capital Structure,O/S Shares,"373,000,000","30,518,000","22,170,000"
+Capital Structure,Market Capitalization ($k),"10,436,540","542,000","89,345"
+Capital Structure,Cash ($k),"2,616,000","17,694","5,489"
+Capital Structure,Debt ($k),"5,611,000","31,698","513,866"
+Capital Structure,Enterprise Value ($k),"13,431,540","556,004","597,722"
+Capital Structure,netCommonStockIssuance ($k),"4,000",909,0
+Capital Structure,netDebtIssuance ($k),0,"-78,250","-73,584"
+Liquidity & Cash Flow,DSO,1.9,10.5,15.3
+Liquidity & Cash Flow,DIO,90.8,155.6,163.8
+Liquidity & Cash Flow,DPO,60.8,66.3,47.5
+Liquidity & Cash Flow,CCC,31.9,99.8,131.6
+Liquidity & Cash Flow,OCF ($k),"1,592,000","49,618","8,118"
+Liquidity & Cash Flow,CapEx ($k),"-616,000","-29,220","-17,381"
+Liquidity & Cash Flow,FCF ($k),"976,000","20,398","-9,263"
+BQR-Mid-Mkt,Total Debt / Equity,1.5x,0.1x,999.0x
+BQR,Total Debt / Adj Ebitda,3.2x,0.4x,999.0x
+BQR,Adj Ebitda / Interest Expense,-999.0x,2.0x,-999.0x
+BQR,Net Income before extraordinary ($k),"816,000","5,508","-88,263"
+BQR,(NCO-CAPEX) / Total Debt,17.39%,64.35%,-1.80%
+BQR,Score: Operating Leverage,45,15,75
+BQR,Score: ICR,75,65,75
+BQR,Score: Net Income,35,55,75
+BQR,Score: FCF/Debt,48,15,75
+BQR,BQR,47.8,32.5,75.0
