@@ -1,2 +1,5 @@
 [industry_name, [ticker1, ticker2, so_on_so-forth]]
-[refinery, [dk, mpc, pbf, oke, dino]]
+[machinery, [dci, ph, cmi]]
+[health, [dhr, tmo, ilmn, abt, a, wat]]
+[rating, [efx, expn, tru]]
+[apparel, [le, gap, plce]]
