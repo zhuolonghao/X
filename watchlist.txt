@@ -1,5 +1,1 @@
 [industry_name, [ticker1, ticker2, so_on_so-forth]]
-[machinery, [dci, ph, cmi]]
-[health, [dhr, tmo, ilmn, abt, a, wat]]
-[rating, [efx, expn, tru]]
-[apparel, [le, gap, plce]]
