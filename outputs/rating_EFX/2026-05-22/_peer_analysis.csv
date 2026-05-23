@@ -1,0 +1,51 @@
+Category,Metric,EFX,TRU
+Header,Fiscal Period,2026-Q1,2026-Q1
+Header,Statement Date,2026-03-31,2026-03-31
+Header,Filing Date,2026-04-21,2026-04-28
+Revenue & Margin,Segment-1,United States Consumer Information Solutions,U.S. Markets
+Revenue & Margin,Segment-1 %,51.0%,78.0%
+Revenue & Margin,Segment-2,Workforce,International
+Revenue & Margin,Segment-2 %,31.7%,22.0%
+Revenue & Margin,Segment-3,International,International
+Revenue & Margin,Segment-3 %,17.3%,3.9%
+Revenue & Margin,Others,-,-
+Revenue & Margin,Others %,-,-
+Revenue & Margin,Revenue Total ($k),"6,281,400","4,726,400"
+Revenue & Margin,Rev-CoGS / Rev,44.67%,52.73%
+Revenue & Margin,Rev-CoGS-SG&A / Rev,18.40%,24.44%
+Revenue & Margin,Rev-CoGs-SG&A-Other.OpEx / Rev,18.26%,18.06%
+Revenue & Margin,Net Income / Rev,11.12%,14.91%
+EBITDA,Net Income ($k),"698,700","704,600"
+EBITDA,D & A ($k),"733,500","588,200"
+EBITDA,Net Interest Expense ($k),"215,100","209,900"
+EBITDA,Tax Provision ($k),"241,500","159,600"
+EBITDA,EBITDA ($k),"1,888,800","1,662,300"
+EBITDA,Stock-Based Comp ($k),"83,700","114,100"
+EBITDA,Others Adj.,TBD,TBD
+EBITDA,Adj. EBITDA,TBD,TBD
+EBITDA,Covenant EBITDA,TBD,TBD
+Capital Structure,Stock Price,180.07,69.19
+Capital Structure,O/S Shares,"120,000,000","192,700,000"
+Capital Structure,Market Capitalization ($k),"21,608,400","13,332,913"
+Capital Structure,Cash ($k),"183,400","732,500"
+Capital Structure,Debt ($k),"5,308,100","5,684,600"
+Capital Structure,Enterprise Value ($k),"26,733,100","18,285,013"
+Capital Structure,netCommonStockIssuance ($k),"-249,600","-23,000"
+Capital Structure,netDebtIssuance ($k),"213,500","502,300"
+Liquidity & Cash Flow,DSO,60.1,76.0
+Liquidity & Cash Flow,DIO,0.0,0.0
+Liquidity & Cash Flow,DPO,18.2,58.6
+Liquidity & Cash Flow,CCC,41.9,17.3
+Liquidity & Cash Flow,OCF ($k),"1,633,700","1,019,300"
+Liquidity & Cash Flow,CapEx ($k),"-494,600","-322,800"
+Liquidity & Cash Flow,FCF ($k),"1,139,100","696,500"
+BQR-Mid-Mkt,Total Debt / Equity,1.2x,1.2x
+BQR,Total Debt / Adj Ebitda,2.8x,3.4x
+BQR,Adj Ebitda / Interest Expense,8.8x,7.9x
+BQR,Net Income before extraordinary ($k),"698,700","704,600"
+BQR,(NCO-CAPEX) / Total Debt,21.46%,12.25%
+BQR,Score: Operating Leverage,45,48
+BQR,Score: ICR,45,45
+BQR,Score: Net Income,35,35
+BQR,Score: FCF/Debt,45,55
+BQR,BQR,42.5,46.0
