@@ -1,0 +1,51 @@
+Category,Metric,CMI,DCI,PH
+Header,Fiscal Period,2026-Q1,2026-Q2,2026-Q3
+Header,Statement Date,2026-03-31,2026-01-31,2026-03-31
+Header,Filing Date,2026-05-05,2026-02-02,2026-04-30
+Revenue & Margin,Segment-1,Distribution,Mobile Solutions Segment,Diversified Industrial Segment
+Revenue & Margin,Segment-1 %,36.8%,62.1%,68.8%
+Revenue & Margin,Segment-2,Engine,Industrial Solutions Segment,Aerospace Systems Segment
+Revenue & Margin,Segment-2 %,32.3%,29.9%,31.2%
+Revenue & Margin,Segment-3,Components,Life Sciences Segment,-
+Revenue & Margin,Segment-3 %,30.1%,8.0%,-
+Revenue & Margin,Others,"Power Systems, Accelera, Total Segment",Industrial Products Segment,-
+Revenue & Margin,Others %,0.7%,0.0%,-
+Revenue & Margin,Revenue Total ($k),"33,894,000","3,752,500","20,987,074"
+Revenue & Margin,Rev-CoGS / Rev,25.39%,34.36%,37.23%
+Revenue & Margin,Rev-CoGS-SG&A / Rev,15.95%,17.20%,20.87%
+Revenue & Margin,Rev-CoGs-SG&A-Other.OpEx / Rev,11.24%,13.36%,20.87%
+Revenue & Margin,Net Income / Rev,7.89%,10.09%,16.58%
+EBITDA,Net Income ($k),"2,673,000","378,500","3,480,172"
+EBITDA,D & A ($k),"1,118,000","97,900","493,335"
+EBITDA,Net Interest Expense ($k),"247,000","27,600","397,791"
+EBITDA,Tax Provision ($k),"993,000","122,300","813,506"
+EBITDA,EBITDA ($k),"5,031,000","626,300","5,184,804"
+EBITDA,Stock-Based Comp ($k),0,"23,600","174,234"
+EBITDA,Others Adj.,TBD,TBD,TBD
+EBITDA,Adj. EBITDA,TBD,TBD,TBD
+EBITDA,Covenant EBITDA,TBD,TBD,TBD
+Capital Structure,Stock Price,538.02,101.94,895.24
+Capital Structure,O/S Shares,"138,300,000","115,600,000","126,200,000"
+Capital Structure,Market Capitalization ($k),"74,408,166","11,784,264","112,979,288"
+Capital Structure,Cash ($k),"2,614,000","194,400","476,000"
+Capital Structure,Debt ($k),"8,240,000","680,800","9,582,000"
+Capital Structure,Enterprise Value ($k),"80,034,166","12,270,664","122,085,288"
+Capital Structure,netCommonStockIssuance ($k),"-243,000","-1,200","-340,000"
+Capital Structure,netDebtIssuance ($k),"101,000","-2,600","-274,000"
+Liquidity & Cash Flow,DSO,64.2,64.0,59.3
+Liquidity & Cash Flow,DIO,88.4,79.0,84.9
+Liquidity & Cash Flow,DPO,58.5,53.8,59.7
+Liquidity & Cash Flow,CCC,94.1,89.2,84.5
+Liquidity & Cash Flow,OCF ($k),"3,933,000","413,900","4,095,239"
+Liquidity & Cash Flow,CapEx ($k),"-1,262,000","-64,200","-416,847"
+Liquidity & Cash Flow,FCF ($k),"2,671,000","349,700","3,678,392"
+BQR-Mid-Mkt,Total Debt / Equity,0.7x,0.4x,0.7x
+BQR,Total Debt / Adj Ebitda,1.6x,1.1x,1.8x
+BQR,Adj Ebitda / Interest Expense,20.4x,22.7x,13.0x
+BQR,Net Income before extraordinary ($k),"2,673,000","378,500","3,480,172"
+BQR,(NCO-CAPEX) / Total Debt,32.42%,51.37%,38.39%
+BQR,Score: Operating Leverage,35,35,42
+BQR,Score: ICR,25,25,35
+BQR,Score: Net Income,25,35,25
+BQR,Score: FCF/Debt,35,15,35
+BQR,BQR,31.0,28.5,35.0
