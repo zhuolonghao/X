@@ -1,0 +1,51 @@
+Category,Metric,A,ABT,DHR,ILMN,TMO,WAT
+Header,Fiscal Period,2026-Q1,2026-Q1,2026-Q1,2026-Q1,2026-Q1,2026-Q1
+Header,Statement Date,2026-01-31,2026-03-31,2026-03-31,2026-03-31,2026-03-31,2026-04-30
+Header,Filing Date,2026-03-03,2026-04-29,2026-04-21,2026-05-04,2026-05-01,2026-05-12
+Revenue & Margin,Segment-1,Agilent CrossLab,Medical Devices,"Revenue from Contract with Customer, Measurement, Recurring",Sequencing,Consumables,Waters Instrument Systems
+Revenue & Margin,Segment-1 %,41.9%,48.3%,81.9%,91.8%,41.9%,34.8%
+Revenue & Margin,Segment-2,Life Sciences and Applied Markets,Diagnostic Products,"Revenue from Contract with Customer, Measurement, Nonrecurring",Microarray,Service,Waters Service
+Revenue & Margin,Segment-2 %,39.2%,20.2%,18.1%,8.2%,41.7%,34.1%
+Revenue & Margin,Segment-3,Applied Markets,Nutritional Products,-,-,Instruments,Chemistry Consumables
+Revenue & Margin,Segment-3 %,18.9%,19.1%,-,-,16.4%,19.9%
+Revenue & Margin,Others,-,Established Pharmaceutical Products,-,-,-,"Ta Instrument Systems, Ta Service"
+Revenue & Margin,Others %,-,12.5%,-,-,-,11.1%
+Revenue & Margin,Revenue Total ($k),"7,065,000","45,134,000","24,778,000","4,391,000","45,197,000","3,770,581"
+Revenue & Margin,Rev-CoGS / Rev,52.23%,56.38%,60.68%,67.66%,39.41%,55.02%
+Revenue & Margin,Rev-CoGS-SG&A / Rev,27.11%,28.49%,27.44%,43.07%,21.89%,28.33%
+Revenue & Margin,Rev-CoGs-SG&A-Other.OpEx / Rev,20.61%,18.17%,20.95%,21.45%,17.76%,17.08%
+Revenue & Margin,Net Income / Rev,18.26%,13.91%,14.89%,19.43%,15.18%,11.91%
+EBITDA,Net Income ($k),"1,290,000","6,276,000","3,689,000","853,000","6,859,000","449,248"
+EBITDA,D & A ($k),"283,000","3,090,000","2,382,000","134,000","2,810,000","462,868"
+EBITDA,Net Interest Expense ($k),"47,000","127,000","205,000","47,000","448,000","82,390"
+EBITDA,Tax Provision ($k),"142,000","1,861,000","650,000","208,000","522,000","74,742"
+EBITDA,EBITDA ($k),"1,762,000","11,354,000","6,926,000","1,242,000","10,639,000","1,069,248"
+EBITDA,Stock-Based Comp ($k),"129,000","692,000","378,000","-3,000",0,"61,249"
+EBITDA,Others Adj.,TBD,TBD,TBD,TBD,TBD,TBD
+EBITDA,Adj. EBITDA,TBD,TBD,TBD,TBD,TBD,TBD
+EBITDA,Covenant EBITDA,TBD,TBD,TBD,TBD,TBD,TBD
+Capital Structure,Stock Price,133.85,102.67,181.52,120.81,473.36,304.24
+Capital Structure,O/S Shares,"283,000,000","1,746,959,000","707,900,000","153,000,000","372,000,000","82,139,000"
+Capital Structure,Market Capitalization ($k),"37,879,550","179,360,281","128,498,008","18,483,930","176,089,920","24,989,969"
+Capital Structure,Cash ($k),"1,758,000","6,803,000","5,701,000","1,089,000","3,254,000","462,000"
+Capital Structure,Debt ($k),"3,354,000","34,047,000","18,484,000","2,464,000","43,161,000","5,570,000"
+Capital Structure,Enterprise Value ($k),"39,475,550","206,604,281","141,281,008","19,858,930","215,996,920","30,097,969"
+Capital Structure,netCommonStockIssuance ($k),"-121,000","-64,000","-9,000",0,"-3,000,000","-9,000"
+Capital Structure,netDebtIssuance ($k),"-2,000","18,475,000","309,000",0,"4,215,000","-195,000"
+Liquidity & Cash Flow,DSO,74.3,65.2,58.9,63.6,78.2,98.3
+Liquidity & Cash Flow,DIO,110.6,125.8,98.0,150.4,74.1,171.2
+Liquidity & Cash Flow,DPO,60.0,80.4,66.1,56.3,43.1,49.5
+Liquidity & Cash Flow,CCC,124.9,110.6,90.8,157.6,109.2,220.0
+Liquidity & Cash Flow,OCF ($k),"1,396,000","9,464,000","6,439,000","1,128,000","8,287,000","390,002"
+Liquidity & Cash Flow,CapEx ($k),"-403,000","-2,086,000","-1,148,000","-157,000","-1,539,000","-126,003"
+Liquidity & Cash Flow,FCF ($k),"993,000","7,378,000","5,291,000","989,000","6,748,000","263,999"
+BQR-Mid-Mkt,Total Debt / Equity,0.5x,0.7x,0.3x,0.9x,0.8x,0.4x
+BQR,Total Debt / Adj Ebitda,1.9x,3.0x,2.7x,2.0x,4.1x,5.2x
+BQR,Adj Ebitda / Interest Expense,37.5x,89.4x,33.8x,26.4x,23.7x,13.0x
+BQR,Net Income before extraordinary ($k),"1,290,000","6,276,000","3,689,000","853,000","6,859,000","449,248"
+BQR,(NCO-CAPEX) / Total Debt,29.61%,21.67%,28.62%,40.14%,15.63%,4.74%
+BQR,Score: Operating Leverage,42,45,45,42,52,58
+BQR,Score: ICR,15,15,15,25,25,35
+BQR,Score: Net Income,25,15,25,35,15,35
+BQR,Score: FCF/Debt,42,45,42,25,52,75
+BQR,BQR,33.7,33.0,34.8,33.5,38.7,53.0
